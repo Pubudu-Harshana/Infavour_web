@@ -1,5 +1,18 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const spectre = localFont({
+  src: "../public/fonts/spectre.woff2",
+  variable: "--font-spectre",
+  display: "swap",
+});
+
+const data70 = localFont({
+  src: "../public/fonts/data70.woff2",
+  variable: "--font-data70",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "INFAVOUR SOLUTIONS — Infinite Digital Experiences",
@@ -39,7 +52,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased noise-overlay">{children}</body>
+      <body className={`${spectre.variable} ${data70.variable} antialiased noise-overlay`}>
+        {children}
+      </body>
     </html>
   );
 }

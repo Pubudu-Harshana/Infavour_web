@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Code2, Palette, Film } from "lucide-react";
 
 const services = [
@@ -9,289 +8,188 @@ const services = [
     icon: Code2,
     title: "Web Development",
     subtitle: "Modern. Fast. Scalable.",
-    description:
-      "We architect blazing-fast, pixel-perfect web experiences using the latest technologies. From landing pages to complex web apps — we build digital infrastructure that scales.",
+    description: "We architect blazing-fast, pixel-perfect web experiences using the latest technologies. From landing pages to complex web apps — we build digital infrastructure that scales.",
     color: "#7B2FF7",
     glow: "rgba(123,47,247,0.4)",
-    delay: 0,
-    position: "left",
     tags: ["Next.js", "React", "TypeScript", "Node.js"],
+    num: "01",
+    stat: { value: "2×", label: "Faster Load" },
   },
   {
     icon: Palette,
     title: "Graphic Design",
     subtitle: "Impactful. Bold. Memorable.",
-    description:
-      "Visual identities that stop the scroll. We craft brand stories through typography, color, and composition — turning your vision into unforgettable design.",
+    description: "Visual identities that stop the scroll. We craft brand stories through typography, color, and composition — turning your vision into unforgettable design.",
     color: "#a855f7",
     glow: "rgba(168,85,247,0.4)",
-    delay: 0.2,
-    position: "center",
     tags: ["Branding", "UI/UX", "Motion", "Print"],
+    num: "02",
+    stat: { value: "300%", label: "Engagement" },
   },
   {
     icon: Film,
     title: "Video Editing",
     subtitle: "Cinematic. Engaging. Viral.",
-    description:
-      "From raw footage to cinematic masterpieces. We craft video content that captures attention, builds emotion, and drives action across every platform.",
+    description: "From raw footage to cinematic masterpieces. We craft video content that captures attention, builds emotion, and drives action across every platform.",
     color: "#00C6FF",
     glow: "rgba(0,198,255,0.4)",
-    delay: 0.4,
-    position: "right",
     tags: ["After Effects", "Premiere", "Color Grade", "VFX"],
+    num: "03",
+    stat: { value: "1M+", label: "Views" },
   },
 ];
 
-function ServiceCard({
-  service,
-  index,
-}: {
-  service: (typeof services)[0];
-  index: number;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+// Animation variants
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.85,
+      ease: [0.25, 1, 0.5, 1], // smooth cubic-bezier ease out
+    },
+  },
+};
+
+export default function InfinityFlow() {
+  return (
+    <section id="services" style={{ position: "relative", padding: "135px 24px", overflow: "hidden", background: "#04020F" }}>
+      {/* Background image */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 0, overflow: "hidden" }}>
+        <img
+          src="/Images/service.webp"
+          alt="Services Background"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", opacity: 0.65 }}
+        />
+        {/* Dark overlay for readability */}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(4,2,15,0.65) 0%, rgba(4,2,15,0.35) 50%, rgba(4,2,15,0.75) 100%)" }} />
+      </div>
+
+      {/* Background grid */}
+      <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(123,47,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(123,47,247,0.03) 1px, transparent 1px)", backgroundSize: "80px 80px", pointerEvents: "none", zIndex: 1 }} />
+
+      {/* Accent glows */}
+      <div style={{ position: "absolute", top: "0", left: "50%", transform: "translateX(-50%)", width: "800px", height: "400px", background: "radial-gradient(ellipse, rgba(123,47,247,0.06) 0%, transparent 70%)", pointerEvents: "none", zIndex: 1 }} />
+
+      <motion.div 
+        style={{ maxWidth: "1200px", margin: "0 auto", position: "relative" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.15 }}
+        variants={containerVariants}
+      >
+        {/* Section Header */}
+        <motion.div
+          variants={itemVariants}
+          style={{ textAlign: "center", marginBottom: "80px" }}
+        >
+          {/* Label with lines */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px", marginBottom: "20px" }}>
+            <div style={{ height: "1px", width: "60px", background: "linear-gradient(90deg, transparent, rgba(123,47,247,0.7))" }} />
+            <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", color: "#7B2FF7", fontFamily: "Outfit, sans-serif" }}>What We Do</span>
+            <div style={{ height: "1px", width: "60px", background: "linear-gradient(270deg, transparent, rgba(0,198,255,0.7))" }} />
+          </div>
+          <h2 style={{ fontSize: "clamp(36px,5.5vw,58px)", fontWeight: 900, color: "#fff", marginBottom: "16px", fontFamily: "Outfit, sans-serif", letterSpacing: "-0.03em" }}>
+            Infinite{" "}
+            <span style={{ background: "linear-gradient(135deg,#7B2FF7,#00C6FF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              Capabilities
+            </span>
+          </h2>
+          <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "17px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.75 }}>
+            Every service is a node in our infinite loop of creativity — always connected, always evolving.
+          </p>
+        </motion.div>
+
+        {/* Service cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
+          {services.map((service) => (
+            <ServiceCard key={service.title} service={service} />
+          ))}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+function ServiceCard({ service }: { service: typeof services[0] }) {
   const Icon = service.icon;
 
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 80 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay: service.delay, ease: "easeOut" }}
-      className="group relative flex flex-col h-full"
+      variants={itemVariants}
+      style={{ position: "relative" }}
     >
-      {/* Card */}
       <div
-        className="relative h-full rounded-2xl p-8 flex flex-col gap-6 transition-all duration-500 group-hover:scale-[1.02]"
-        style={{
-          background: "rgba(255,255,255,0.03)",
-          border: `1px solid ${service.color}25`,
-          backdropFilter: "blur(20px)",
-          boxShadow: `0 0 0px ${service.glow}`,
-        }}
+        style={{ position: "relative", borderRadius: "24px", padding: "40px 36px", display: "flex", flexDirection: "column", gap: "0", background: "rgba(255,255,255,0.03)", border: `1px solid ${service.color}28`, backdropFilter: "blur(24px)", transition: "all 0.4s ease", cursor: "default", height: "100%", overflow: "hidden" }}
         onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.boxShadow =
-            `0 0 40px ${service.glow}, 0 0 80px ${service.glow}40, inset 0 0 40px ${service.glow}10`;
-          (e.currentTarget as HTMLElement).style.borderColor =
-            service.color + "60";
+          const el = e.currentTarget as HTMLElement;
+          el.style.borderColor = service.color + "55";
+          el.style.boxShadow = `0 0 50px ${service.glow}50, 0 24px 60px rgba(0,0,0,0.3)`;
+          el.style.transform = "translateY(-6px)";
+          el.style.background = `rgba(255,255,255,0.05)`;
         }}
         onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.boxShadow = `0 0 0px ${service.glow}`;
-          (e.currentTarget as HTMLElement).style.borderColor =
-            service.color + "25";
+          const el = e.currentTarget as HTMLElement;
+          el.style.borderColor = service.color + "28";
+          el.style.boxShadow = "none";
+          el.style.transform = "translateY(0)";
+          el.style.background = "rgba(255,255,255,0.03)";
         }}
       >
-        {/* Top number */}
-        <div
-          className="absolute top-6 right-8 text-7xl font-black opacity-5 select-none"
-          style={{ color: service.color, fontFamily: "Outfit, sans-serif" }}
-        >
-          0{index + 1}
+        {/* Top corner glow */}
+        <div style={{ position: "absolute", top: 0, right: 0, width: "180px", height: "180px", background: `radial-gradient(circle at top right, ${service.color}12 0%, transparent 65%)`, pointerEvents: "none" }} />
+
+        {/* Big number watermark */}
+        <div style={{ position: "absolute", bottom: "16px", right: "20px", fontSize: "100px", fontWeight: 900, color: service.color, opacity: 0.04, fontFamily: "Outfit, sans-serif", lineHeight: 1, pointerEvents: "none", userSelect: "none" }}>
+          {service.num}
         </div>
 
-        {/* Icon */}
-        <div
-          className="w-14 h-14 rounded-xl flex items-center justify-center"
-          style={{
-            background: `${service.color}15`,
-            border: `1px solid ${service.color}30`,
-            boxShadow: `0 0 20px ${service.glow}30`,
-          }}
-        >
-          <Icon size={26} style={{ color: service.color }} />
+        {/* Icon + number row */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "28px" }}>
+          <div style={{ width: "56px", height: "56px", borderRadius: "16px", display: "flex", alignItems: "center", justifyContent: "center", background: `${service.color}1a`, border: `1px solid ${service.color}35`, boxShadow: `0 0 24px ${service.glow}30` }}>
+            <Icon size={26} color={service.color} />
+          </div>
+          {/* Stat badge */}
+          <div style={{ padding: "6px 14px", borderRadius: "99px", background: `${service.color}10`, border: `1px solid ${service.color}30` }}>
+            <span style={{ fontSize: "16px", fontWeight: 900, color: service.color, fontFamily: "Outfit, sans-serif" }}>{service.stat.value}</span>
+            <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.4)", marginLeft: "5px", fontFamily: "Outfit, sans-serif" }}>{service.stat.label}</span>
+          </div>
         </div>
 
         {/* Text */}
-        <div className="flex flex-col gap-2 flex-1">
-          <p
-            className="text-xs font-semibold tracking-widest uppercase"
-            style={{ color: service.color }}
-          >
-            {service.subtitle}
-          </p>
-          <h3
-            className="text-2xl font-bold text-white"
-            style={{ fontFamily: "Outfit, sans-serif" }}
-          >
-            {service.title}
-          </h3>
-          <p className="text-white/50 text-sm leading-relaxed mt-1">
-            {service.description}
-          </p>
-        </div>
+        <p style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: service.color, fontFamily: "Outfit, sans-serif", marginBottom: "8px" }}>
+          {service.subtitle}
+        </p>
+        <h3 style={{ fontSize: "24px", fontWeight: 800, color: "#fff", fontFamily: "Outfit, sans-serif", marginBottom: "14px" }}>
+          {service.title}
+        </h3>
+        <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.45)", lineHeight: 1.75, marginBottom: "28px", flex: 1 }}>
+          {service.description}
+        </p>
+
+        {/* Separator */}
+        <div style={{ height: "1px", background: `linear-gradient(90deg, transparent, ${service.color}40, transparent)`, marginBottom: "22px" }} />
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mt-auto">
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
           {service.tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-3 py-1 rounded-full text-xs"
-              style={{
-                background: `${service.color}10`,
-                border: `1px solid ${service.color}20`,
-                color: `${service.color}cc`,
-              }}
-            >
+            <span key={tag} style={{ padding: "5px 14px", borderRadius: "99px", fontSize: "11px", fontWeight: 600, background: `${service.color}10`, border: `1px solid ${service.color}22`, color: `${service.color}cc`, fontFamily: "Outfit, sans-serif" }}>
               {tag}
             </span>
           ))}
         </div>
-
-        {/* Bottom glow line */}
-        <div
-          className="absolute bottom-0 left-8 right-8 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          style={{
-            background: `linear-gradient(90deg, transparent, ${service.color}, transparent)`,
-          }}
-        />
       </div>
     </motion.div>
   );
 }
 
-export default function InfinityFlow() {
-  const titleRef = useRef(null);
-  const titleInView = useInView(titleRef, { once: true, margin: "-80px" });
-  const svgRef = useRef(null);
-  const svgInView = useInView(svgRef, { once: true, margin: "-100px" });
-
-  return (
-    <section
-      id="services"
-      className="relative py-32 px-6 overflow-hidden"
-    >
-      {/* BG decorations */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(123,47,247,0.04) 0%, transparent 70%)",
-          }}
-        />
-      </div>
-
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <motion.div
-          ref={titleRef}
-          initial={{ opacity: 0, y: 40 }}
-          animate={titleInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          {/* Infinity symbol */}
-          <div className="flex items-center justify-center mb-6">
-            <div className="h-px w-20 bg-gradient-to-r from-transparent to-purple-500/50" />
-            <span
-              className="mx-6 text-5xl font-black"
-              style={{
-                background: "linear-gradient(135deg, #7B2FF7, #00C6FF)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              ∞
-            </span>
-            <div className="h-px w-20 bg-gradient-to-l from-transparent to-blue-400/50" />
-          </div>
-
-          <h2
-            className="text-4xl md:text-5xl font-black text-white mb-4"
-            style={{ fontFamily: "Outfit, sans-serif" }}
-          >
-            Infinite{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #7B2FF7, #00C6FF)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Capabilities
-            </span>
-          </h2>
-          <p className="text-white/40 text-lg max-w-xl mx-auto">
-            Every service we offer is a node in our infinite loop of creativity —
-            always connected, always evolving.
-          </p>
-        </motion.div>
-
-        {/* Animated SVG infinity path */}
-        <motion.div
-          ref={svgRef}
-          initial={{ opacity: 0 }}
-          animate={svgInView ? { opacity: 1 } : {}}
-          transition={{ duration: 1 }}
-          className="flex justify-center mb-20"
-        >
-          <svg
-            viewBox="0 0 600 200"
-            className="w-full max-w-2xl"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="infinityGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#7B2FF7" />
-                <stop offset="50%" stopColor="#00C6FF" />
-                <stop offset="100%" stopColor="#7B2FF7" />
-              </linearGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            {svgInView && (
-              <motion.path
-                d="M 150 100 C 150 50, 225 50, 300 100 C 375 150, 450 150, 450 100 C 450 50, 375 50, 300 100 C 225 150, 150 150, 150 100 Z"
-                stroke="url(#infinityGrad)"
-                strokeWidth="2"
-                filter="url(#glow)"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 2.5, ease: "easeInOut" }}
-              />
-            )}
-            {svgInView && (
-              <>
-                {/* Traveling dot */}
-                <motion.circle
-                  r="5"
-                  fill="#00C6FF"
-                  filter="url(#glow)"
-                  initial={{ offsetDistance: "0%" } as never}
-                  animate={{ offsetDistance: "100%" } as never}
-                  style={{
-                    offsetPath:
-                      "path('M 150 100 C 150 50, 225 50, 300 100 C 375 150, 450 150, 450 100 C 450 50, 375 50, 300 100 C 225 150, 150 150, 150 100 Z')",
-                  } as never}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "linear",
-                    delay: 2.5,
-                  }}
-                />
-              </>
-            )}
-          </svg>
-        </motion.div>
-
-        {/* Service cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((service, i) => (
-            <ServiceCard key={service.title} service={service} index={i} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
