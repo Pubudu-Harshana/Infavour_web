@@ -56,7 +56,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.85,
-      ease: [0.25, 1, 0.5, 1], // smooth cubic-bezier ease out
+      ease: [0.25, 1, 0.5, 1] as const, // smooth cubic-bezier ease out
     },
   },
 };
