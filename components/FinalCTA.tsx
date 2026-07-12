@@ -163,25 +163,43 @@ function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
 
     setIsSubmitting(true);
     
-    // Simulate submission loading
-    setTimeout(() => {
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "72ee69aa-e17b-4c50-8d1f-47ed3db25034",
+          name: form.name,
+          email: form.email,
+          service: form.service,
+          message: form.message,
+          subject: `New Project Inquiry from ${form.name} - ${form.service}`,
+          from_name: "INFAVOUR SOLUTIONS Portal"
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setIsSent(true);
+        setForm({ name: "", email: "", service: "Web Development", message: "" });
+      } else {
+        alert("Transmission failed. Please try connecting via WhatsApp!");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Network error. Please try connecting via WhatsApp!");
+    } finally {
       setIsSubmitting(false);
-      setIsSent(true);
-
-      // Open prefilled mail client
-      const subject = encodeURIComponent(`New Inquiry from ${form.name} - ${form.service}`);
-      const body = encodeURIComponent(`Project Inquiry:\n\nName: ${form.name}\nEmail: ${form.email}\nService: ${form.service}\n\nMessage/Requirements:\n${form.message}`);
-      window.location.href = `mailto:infavoursolutions@gmail.com?subject=${subject}&body=${body}`;
-
-      // Reset
-      setForm({ name: "", email: "", service: "Web Development", message: "" });
-    }, 1500);
+    }
   };
 
   const inputStyle = {
@@ -233,9 +251,9 @@ function ContactForm() {
           <div style={{ display: "inline-flex", width: "64px", height: "64px", borderRadius: "50%", background: "rgba(37,211,102,0.1)", border: "2px solid rgba(37,211,102,0.4)", color: "#25D366", alignItems: "center", justifyContent: "center", marginBottom: "24px", boxShadow: "0 0 20px rgba(37,211,102,0.2)" }}>
             <CheckCircle size={32} />
           </div>
-          <h3 style={{ fontSize: "22px", fontWeight: 700, color: "#fff", marginBottom: "12px", fontFamily: "Outfit, sans-serif" }}>Inquiry Pre-Filled! 🚀</h3>
+          <h3 style={{ fontSize: "22px", fontWeight: 700, color: "#fff", marginBottom: "12px", fontFamily: "Outfit, sans-serif" }}>Transmission Sent! 🚀</h3>
           <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "14.5px", lineHeight: 1.6, maxWidth: "290px", margin: "0 auto 28px" }}>
-            We pre-filled your mail application with all your details. Just hit send to launch it to us!
+            Your project details have been launched into our orbit. We will review it and reply within 24 hours!
           </p>
           <button 
             onClick={() => setIsSent(false)}
