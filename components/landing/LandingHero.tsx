@@ -149,12 +149,9 @@ export default function LandingHero() {
       color: colors[Math.floor(Math.random() * colors.length)],
     });
     const stars: Star[] = Array.from({ length: 280 }, mkStar);
-    const mousePos = { x: -1000, y: -1000 };
-
     const drawStars = () => {
       ctx.clearRect(0, 0, w, h);
       const cx = w / 2, cy = h / 2;
-      const activeStars: { x: number; y: number }[] = [];
       stars.forEach((s) => {
         const scale = 1 / (1 - s.z * 0.8);
         const sx = cx + s.x * scale;
@@ -170,59 +167,29 @@ export default function LandingHero() {
         s.z += s.speed * 0.004;
         if (s.z >= 1 || sx < -80 || sx > w+80 || sy < -80 || sy > h+80) {
           Object.assign(s, mkStar(), { z: 0.01 });
-        } else {
-          const dx = sx - mousePos.x;
-          const dy = sy - mousePos.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 130) {
-            activeStars.push({ x: sx, y: sy });
-            const alpha = (1 - dist / 130) * 0.22;
-            ctx.beginPath();
-            ctx.moveTo(sx, sy);
-            ctx.lineTo(mousePos.x, mousePos.y);
-            ctx.strokeStyle = `rgba(0, 212, 232, ${alpha})`;
-            ctx.lineWidth = 0.65;
-            ctx.stroke();
-          }
         }
       });
-
-      for (let i = 0; i < activeStars.length; i++) {
-        for (let j = i + 1; j < activeStars.length; j++) {
-          const s1 = activeStars[i];
-          const s2 = activeStars[j];
-          const dx = s1.x - s2.x;
-          const dy = s1.y - s2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 95) {
-            const alpha = (1 - dist / 95) * 0.15;
-            ctx.beginPath();
-            ctx.moveTo(s1.x, s1.y);
-            ctx.lineTo(s2.x, s2.y);
-            ctx.strokeStyle = `rgba(123, 47, 247, ${alpha})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
     };
 
-    /* ── EFFECT 1: Shooting Stars ────────────────────────────── ACTIVE ── */
+    /* ── EFFECT 1: Shooting Stars (Interactive meteors) ── */
     type Shooter = { x:number; y:number; vx:number; vy:number; life:number; maxLife:number; len:number };
     const shooters: Shooter[] = [];
     let nextShoot = Date.now() + 2000;
 
-    const spawnShooter = () => {
-      const angle = Math.PI / 5 + (Math.random() - 0.5) * 0.4;
-      const speed = 14 + Math.random() * 8;
+    const spawnShooter = (sx?: number, sy?: number, angle?: number, speed?: number) => {
+      const shAngle = angle !== undefined ? angle : Math.PI / 5 + (Math.random() - 0.5) * 0.4;
+      const shSpeed = speed !== undefined ? speed : 12 + Math.random() * 6;
+      const startX = sx !== undefined ? sx : Math.random() * w * 0.6;
+      const startY = sy !== undefined ? sy : Math.random() * h * 0.3;
+
       shooters.push({
-        x: Math.random() * w * 0.7,
-        y: Math.random() * h * 0.4,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
+        x: startX,
+        y: startY,
+        vx: Math.cos(shAngle) * shSpeed,
+        vy: Math.sin(shAngle) * shSpeed,
         life: 0,
-        maxLife: 35 + Math.random() * 20,
-        len: 90 + Math.random() * 80,
+        maxLife: 28 + Math.random() * 18,
+        len: 70 + Math.random() * 65,
       });
     };
 
@@ -230,29 +197,36 @@ export default function LandingHero() {
       const now = Date.now();
       if (now > nextShoot) {
         spawnShooter();
-        nextShoot = now + 3500 + Math.random() * 4500;
+        nextShoot = now + 4000 + Math.random() * 6000;
       }
       for (let i = shooters.length - 1; i >= 0; i--) {
         const sh = shooters[i];
         const p = sh.life / sh.maxLife;
-        const alpha = p < 0.3 ? p / 0.3 : 1 - (p - 0.3) / 0.7;
-        const tailX = sh.x - sh.vx * (sh.len / 14);
-        const tailY = sh.y - sh.vy * (sh.len / 14);
+        const alpha = p < 0.25 ? p / 0.25 : 1 - (p - 0.25) / 0.75;
+        const tailX = sh.x - sh.vx * (sh.len / 12);
+        const tailY = sh.y - sh.vy * (sh.len / 12);
         const grad = ctx.createLinearGradient(tailX, tailY, sh.x, sh.y);
         grad.addColorStop(0, "rgba(255,255,255,0)");
-        grad.addColorStop(1, `rgba(200,240,255,${(alpha * 0.95).toFixed(2)})`);
+        grad.addColorStop(1, `rgba(0,212,232,${(alpha * 0.95).toFixed(2)})`);
         ctx.beginPath();
         ctx.moveTo(tailX, tailY);
         ctx.lineTo(sh.x, sh.y);
         ctx.strokeStyle = grad;
-        ctx.lineWidth = 1.8;
+        ctx.lineWidth = 2.0;
         ctx.stroke();
+
         ctx.beginPath();
-        ctx.arc(sh.x, sh.y, 2, 0, Math.PI * 2);
+        ctx.arc(sh.x, sh.y, 2.5, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(2)})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = "#00d4e8";
         ctx.fill();
+        ctx.shadowBlur = 0;
+
         sh.x += sh.vx; sh.y += sh.vy; sh.life++;
-        if (sh.life >= sh.maxLife) shooters.splice(i, 1);
+        if (sh.life >= sh.maxLife || sh.x < -100 || sh.x > w+100 || sh.y < -100 || sh.y > h+100) {
+          shooters.splice(i, 1);
+        }
       }
     };
 
@@ -309,10 +283,9 @@ export default function LandingHero() {
     };
 
     /* ── EFFECT 2: Mouse Parallax on Astronaut + Mouse Trail ── ACTIVE ── */
-    const onMouseMove = (e: MouseEvent) => {
-      mousePos.x = e.clientX;
-      mousePos.y = e.clientY;
+    const lastMousePos = { x: 0, y: 0, time: Date.now() };
 
+    const onMouseMove = (e: MouseEvent) => {
       if (astronautRef.current) {
         const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
         const dx = ((e.clientX - cx) / cx) * 20;
@@ -324,14 +297,41 @@ export default function LandingHero() {
       if (Math.random() < 0.5) {
         spawnDust(e.clientX, e.clientY);
       }
+
+      // Fast swipe check to fire meteors
+      const now = Date.now();
+      const dt = now - lastMousePos.time;
+      if (dt > 40) {
+        const dx = e.clientX - lastMousePos.x;
+        const dy = e.clientY - lastMousePos.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const speed = dist / dt;
+        if (speed > 1.8) {
+          const angle = Math.atan2(dy, dx);
+          spawnShooter(e.clientX, e.clientY, angle, speed * 8);
+        }
+        lastMousePos.x = e.clientX;
+        lastMousePos.y = e.clientY;
+        lastMousePos.time = now;
+      }
     };
     window.addEventListener("mousemove", onMouseMove);
+
+    const onCanvasClick = (e: MouseEvent) => {
+      for (let i = 0; i < 3; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 9 + Math.random() * 7;
+        spawnShooter(e.clientX, e.clientY, angle, speed);
+      }
+    };
+    window.addEventListener("click", onCanvasClick);
 
     /* ── EFFECT 3: Nebula Pulse ── ACTIVE ── */
 
     /* ── Main loop ───────────────────────────────────────────── */
     const loop = () => {
       drawStars();
+      drawShooters();
       drawDust();
       animId = requestAnimationFrame(loop);
     };
@@ -342,7 +342,8 @@ export default function LandingHero() {
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", onResize);
-      window.removeEventListener("mousemove", onMouseMove); // Effect 2 enabled
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("click", onCanvasClick);
     };
   }, []);
 
