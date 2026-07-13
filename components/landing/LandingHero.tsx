@@ -149,9 +149,12 @@ export default function LandingHero() {
       color: colors[Math.floor(Math.random() * colors.length)],
     });
     const stars: Star[] = Array.from({ length: 280 }, mkStar);
+    const mousePos = { x: -1000, y: -1000 };
+
     const drawStars = () => {
       ctx.clearRect(0, 0, w, h);
       const cx = w / 2, cy = h / 2;
+      const activeStars: { x: number; y: number }[] = [];
       stars.forEach((s) => {
         const scale = 1 / (1 - s.z * 0.8);
         const sx = cx + s.x * scale;
@@ -167,8 +170,41 @@ export default function LandingHero() {
         s.z += s.speed * 0.004;
         if (s.z >= 1 || sx < -80 || sx > w+80 || sy < -80 || sy > h+80) {
           Object.assign(s, mkStar(), { z: 0.01 });
+        } else {
+          const dx = sx - mousePos.x;
+          const dy = sy - mousePos.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 130) {
+            activeStars.push({ x: sx, y: sy });
+            const alpha = (1 - dist / 130) * 0.22;
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(mousePos.x, mousePos.y);
+            ctx.strokeStyle = `rgba(0, 212, 232, ${alpha})`;
+            ctx.lineWidth = 0.65;
+            ctx.stroke();
+          }
         }
       });
+
+      for (let i = 0; i < activeStars.length; i++) {
+        for (let j = i + 1; j < activeStars.length; j++) {
+          const s1 = activeStars[i];
+          const s2 = activeStars[j];
+          const dx = s1.x - s2.x;
+          const dy = s1.y - s2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 95) {
+            const alpha = (1 - dist / 95) * 0.15;
+            ctx.beginPath();
+            ctx.moveTo(s1.x, s1.y);
+            ctx.lineTo(s2.x, s2.y);
+            ctx.strokeStyle = `rgba(123, 47, 247, ${alpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
     };
 
     /* ── EFFECT 1: Shooting Stars (Interactive meteors) ── */
@@ -234,6 +270,9 @@ export default function LandingHero() {
     const lastMousePos = { x: 0, y: 0, time: Date.now() };
 
     const onMouseMove = (e: MouseEvent) => {
+      mousePos.x = e.clientX;
+      mousePos.y = e.clientY;
+
       if (astronautRef.current) {
         const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
         const dx = ((e.clientX - cx) / cx) * 20;
