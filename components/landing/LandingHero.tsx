@@ -220,13 +220,71 @@ export default function LandingHero() {
       }
     };
 
-    /* ── EFFECT 2: Mouse Parallax on Astronaut ── ACTIVE ── */
+    /* ── EFFECT 4: Interactive Space Dust Mouse Trail ── */
+    type DustParticle = {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      color: string;
+      alpha: number;
+      decay: number;
+    };
+    const dustParticles: DustParticle[] = [];
+    const dustColors = ["#00d4e8", "#7B2FF7", "#a855f7", "#ffffff", "#00c6ff"];
+
+    const spawnDust = (mx: number, my: number) => {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 1.4 + 0.3;
+      dustParticles.push({
+        x: mx,
+        y: my,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 0.15, // slight upward drift
+        size: Math.random() * 2.5 + 1.2,
+        color: dustColors[Math.floor(Math.random() * dustColors.length)],
+        alpha: 1.0,
+        decay: Math.random() * 0.015 + 0.012,
+      });
+      if (dustParticles.length > 90) dustParticles.shift();
+    };
+
+    const drawDust = () => {
+      for (let i = dustParticles.length - 1; i >= 0; i--) {
+        const p = dustParticles[i];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.alpha;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = p.color;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= p.decay;
+        if (p.alpha <= 0) {
+          dustParticles.splice(i, 1);
+        }
+      }
+    };
+
+    /* ── EFFECT 2: Mouse Parallax on Astronaut + Mouse Trail ── ACTIVE ── */
     const onMouseMove = (e: MouseEvent) => {
-      if (!astronautRef.current) return;
-      const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-      const dx = ((e.clientX - cx) / cx) * 20;
-      const dy = ((e.clientY - cy) / cy) * 15;
-      astronautRef.current.style.transform = `translate(${dx}px, ${dy}px)`;
+      if (astronautRef.current) {
+        const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+        const dx = ((e.clientX - cx) / cx) * 20;
+        const dy = ((e.clientY - cy) / cy) * 15;
+        astronautRef.current.style.transform = `translate(${dx}px, ${dy}px)`;
+      }
+
+      spawnDust(e.clientX, e.clientY);
+      if (Math.random() < 0.5) {
+        spawnDust(e.clientX, e.clientY);
+      }
     };
     window.addEventListener("mousemove", onMouseMove);
 
@@ -235,7 +293,7 @@ export default function LandingHero() {
     /* ── Main loop ───────────────────────────────────────────── */
     const loop = () => {
       drawStars();
-      // drawShooters(); // Effect 1 ← disabled
+      drawDust();
       animId = requestAnimationFrame(loop);
     };
 
