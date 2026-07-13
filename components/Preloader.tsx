@@ -104,11 +104,11 @@ export default function Preloader() {
                   stroke-width="8"
                   stroke-linecap="round"
                   filter="url(#infinityGlow)"
-                  initial={{ strokeDasharray: "25 25 25 25", strokeDashoffset: 100 }}
+                  initial={{ strokeDasharray: "30 70", strokeDashoffset: 100 }}
                   animate={{ strokeDashoffset: 0 }}
                   transition={{
                     repeat: Infinity,
-                    duration: 2.2,
+                    duration: 2.0,
                     ease: "linear"
                   }}
                 />
@@ -122,11 +122,11 @@ export default function Preloader() {
                   stroke-width="2"
                   stroke-linecap="round"
                   opacity="0.9"
-                  initial={{ strokeDasharray: "8 42 8 42", strokeDashoffset: 100 }}
-                  animate={{ strokeDashoffset: 0 }}
+                  initial={{ strokeDasharray: "10 90", strokeDashoffset: 110 }}
+                  animate={{ strokeDashoffset: 10 }}
                   transition={{
                     repeat: Infinity,
-                    duration: 2.2,
+                    duration: 2.0,
                     ease: "linear"
                   }}
                 />
