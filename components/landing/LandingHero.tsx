@@ -501,6 +501,7 @@ export default function LandingHero() {
 
         {/* ── RIGHT: Astronaut + glass card ── */}
         <div
+          className="hero-right-col"
           style={{
             position: "relative",
             display: "flex",
@@ -511,6 +512,7 @@ export default function LandingHero() {
         >
           {/* Glass info card — top left of astronaut area */}
           <motion.div
+            className="hero-glass-card"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.7 }}
@@ -673,6 +675,7 @@ export default function LandingHero() {
 
           {/* Bottom right: 50K Happy Clients card */}
           <motion.div
+            className="hero-stats-card"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.9 }}
@@ -840,7 +843,16 @@ export default function LandingHero() {
             padding: 90px 24px 0 !important;
             text-align: center !important;
           }
-          .landing-hero-grid > div:last-child {
+          .hero-right-col {
+            height: 280px !important;
+            margin-top: 10px !important;
+          }
+          .astronaut-float {
+            width: 240px !important;
+            height: 240px !important;
+          }
+          .hero-glass-card,
+          .hero-stats-card {
             display: none !important;
           }
           .landing-cards-row {
