@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="figmaBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e0b1c" />
+      <stop offset="50%" stop-color="#140f28" />
+      <stop offset="100%" stop-color="#080612" />
+    </linearGradient>
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f472b6" />
+      <stop offset="100%" stop-color="#db2777" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="btnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#db2777" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    
+    <filter id="pinkGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#figmaBg)" />
+  
+  <!-- Grid Background (Design Space) -->
+  <g opacity="0.06" stroke="#fff" stroke-width="1">
+    <path d="M 0,40 L 800,40 M 0,80 L 800,80 M 0,120 L 800,120 M 0,160 L 800,160 M 0,200 L 800,200 M 0,240 L 800,240 M 0,280 L 800,280 M 0,320 L 800,320 M 0,360 L 800,360 M 0,400 L 800,400 M 0,440 L 800,440 M 0,480 L 800,480 M 0,520 L 800,520 M 0,560 L 800,560" />
+    <path d="M 40,0 L 40,600 M 80,0 L 80,600 M 120,0 L 120,600 M 160,0 L 160,600 M 200,0 L 200,600 M 240,0 L 240,600 M 280,0 L 280,600 M 320,0 L 320,600 M 360,0 L 360,600 M 400,0 L 400,600 M 440,0 L 440,600 M 480,0 L 480,600 M 520,0 L 520,600 M 560,0 L 560,600 M 600,0 L 600,600 M 640,0 L 640,600 M 680,0 L 680,600 M 720,0 L 720,600 M 760,0 L 760,600" />
+  </g>
+
+  <!-- Glowing Background Orbs -->
+  <circle cx="680" cy="180" r="160" fill="#db2777" opacity="0.1" filter="url(#pinkGlow)"/>
+  <circle cx="150" cy="420" r="200" fill="#7c3aed" opacity="0.1" filter="url(#pinkGlow)"/>
+
+  <!-- DESIGN SYSTEM CANVAS -->
+  <g filter="url(#cardShadow)">
+    <!-- Figma Canvas Frame -->
+    <rect x="60" y="50" width="680" height="500" rx="16" fill="#131026" fill-opacity="0.85" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+    
+    <!-- Top Workspace Ruler/Status Bar -->
+    <rect x="60" y="50" width="680" height="40" rx="16" fill="#1b1736" fill-opacity="0.9"/>
+    <!-- Figma tools mock -->
+    <rect x="80" y="62" width="16" height="16" rx="3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+    <polygon points="112,62 124,70 118,72 122,78 120,79 116,73 112,78" fill="rgba(255,255,255,0.5)" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+    <text x="144" y="74" fill="rgba(255, 255, 255, 0.4)" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Luminary UI Kit / Components</text>
+    <rect x="670" y="58" width="50" height="24" rx="12" fill="#db2777" />
+    <text x="695" y="74" fill="#fff" font-family="system-ui, sans-serif" font-size="10" font-weight="700" text-anchor="middle">SHARE</text>
+
+    <!-- LEFT COMPONENT: Design Tokens Swatches -->
+    <!-- Token Card -->
+    <rect x="90" y="110" width="260" height="380" rx="12" fill="#181530" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <text x="110" y="140" fill="#fff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Design Tokens</text>
+    <text x="110" y="156" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="11">Color palette &amp; scales</text>
+    
+    <!-- Token colors list -->
+    <!-- Primary Pink -->
+    <circle cx="125" cy="205" r="16" fill="url(#pinkGrad)"/>
+    <text x="156" y="204" fill="#fff" font-family="system-ui, sans-serif" font-size="11" font-weight="600">brand-pink-500</text>
+    <text x="156" y="217" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="9">#DB2777 • Gradient root</text>
+
+    <!-- Primary Purple -->
+    <circle cx="125" cy="265" r="16" fill="url(#purpleGrad)"/>
+    <text x="156" y="264" fill="#fff" font-family="system-ui, sans-serif" font-size="11" font-weight="600">brand-purple-500</text>
+    <text x="156" y="277" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="9">#7C3AED • Accent secondary</text>
+
+    <!-- Teal Token -->
+    <circle cx="125" cy="325" r="16" fill="#38bdf8"/>
+    <text x="156" y="324" fill="#fff" font-family="system-ui, sans-serif" font-size="11" font-weight="600">info-teal-400</text>
+    <text x="156" y="337" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="9">#38BDF8 • Highlights &amp; charts</text>
+
+    <!-- Neutral Dark -->
+    <circle cx="125" cy="385" r="16" fill="#131026" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    <text x="156" y="384" fill="#fff" font-family="system-ui, sans-serif" font-size="11" font-weight="600">neutral-dark-900</text>
+    <text x="156" y="397" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="9">#131026 • Main container background</text>
+
+    <!-- Grid info at bottom of card -->
+    <line x1="110" y1="435" x2="330" y2="435" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <text x="110" y="460" fill="rgba(255,255,255,0.3)" font-family="system-ui, sans-serif" font-size="10" font-weight="600" letter-spacing="0.5">COMPONENTS: 242 SHIPPED</text>
+
+
+    <!-- RIGHT AREA: Component Showcase -->
+    <!-- Component 1: Premium Button -->
+    <rect x="380" y="110" width="330" height="120" rx="12" fill="#181530" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <text x="400" y="138" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5">BUTTONS / PRIMARY HOVER</text>
+    
+    <!-- Glowing button -->
+    <rect x="400" y="155" width="180" height="42" rx="21" fill="url(#btnGrad)" filter="url(#pinkGlow)" cursor="pointer"/>
+    <text x="490" y="181" fill="#fff" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Launch Experience</text>
+    
+    <!-- Red Auto-Layout Dimensions Spec -->
+    <line x1="590" y1="155" x2="590" y2="197" stroke="#FF5353" stroke-width="1" stroke-dasharray="2,2"/>
+    <line x1="586" y1="155" x2="594" y2="155" stroke="#FF5353" stroke-width="1"/>
+    <line x1="586" y1="197" x2="594" y2="197" stroke="#FF5353" stroke-width="1"/>
+    <text x="600" y="181" fill="#FF5353" font-family="monospace" font-size="10" font-weight="700">h: 42px</text>
+
+    <!-- Component 2: Interactive Toggles -->
+    <rect x="380" y="250" width="330" height="110" rx="12" fill="#181530" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <text x="400" y="278" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5">SELECTION CONTROLS / SWITCH</text>
+    
+    <!-- Active Toggle -->
+    <rect x="400" y="295" width="48" height="26" rx="13" fill="#db2777" filter="url(#pinkGlow)" />
+    <circle cx="435" cy="308" r="10" fill="#fff" />
+    <text x="460" y="312" fill="#fff" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Active State</text>
+
+    <!-- Inactive Toggle -->
+    <rect x="550" y="295" width="48" height="26" rx="13" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <circle cx="563" cy="308" r="10" fill="rgba(255,255,255,0.4)" />
+    <text x="610" y="312" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Disabled</text>
+
+    <!-- Component 3: Sliders -->
+    <rect x="380" y="380" width="330" height="110" rx="12" fill="#181530" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <text x="400" y="408" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5">SLIDER / SLIDERBAR ACTIVE</text>
+    
+    <!-- Slider Track -->
+    <line x1="400" y1="440" x2="680" y2="440" stroke="rgba(255,255,255,0.1)" stroke-width="4" stroke-linecap="round"/>
+    <line x1="400" y1="440" x2="570" y2="440" stroke="url(#btnGrad)" stroke-width="4" stroke-linecap="round" />
+    <!-- Slider Handle -->
+    <circle cx="570" cy="440" r="10" fill="#fff" filter="url(#cardShadow)" />
+    <circle cx="570" cy="440" r="4" fill="#db2777" />
+    <!-- Floating tooltip of slider percentage -->
+    <rect x="550" y="405" width="40" height="20" rx="4" fill="#db2777" />
+    <polygon points="566,425 574,425 570,429" fill="#db2777" />
+    <text x="570" y="419" fill="#fff" font-family="system-ui, sans-serif" font-size="10" font-weight="700" text-anchor="middle">70%</text>
+
+    <!-- Figma Multi-player Cursor -->
+    <g transform="translate(480, 185)">
+      <!-- Figma Cursor Shape -->
+      <polygon points="0,0 0,16 5,12 12,12" fill="#7C3AED" stroke="#fff" stroke-width="1.5" />
+      <!-- Username Tag -->
+      <rect x="10" y="15" width="85" height="20" rx="4" fill="#7C3AED" />
+      <text x="14" y="29" fill="#fff" font-family="system-ui, sans-serif" font-size="10" font-weight="700">Sarah (UI Lead)</text>
+    </g>
+  </g>
+</svg>

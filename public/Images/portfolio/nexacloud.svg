@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0826" />
+      <stop offset="50%" stop-color="#0f0b36" />
+      <stop offset="100%" stop-color="#050314" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7B2FF7" />
+      <stop offset="100%" stop-color="#00C6FF" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7B2FF7" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FF007A" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00C6FF" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#00C6FF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="purpleChartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7B2FF7" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#7B2FF7" stop-opacity="0"/>
+    </linearGradient>
+    
+    <!-- Filters for glows -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)" />
+
+  <!-- Grid Pattern overlay -->
+  <g opacity="0.15">
+    <path d="M 0,50 L 800,50 M 0,100 L 800,100 M 0,150 L 800,150 M 0,200 L 800,200 M 0,250 L 800,250 M 0,300 L 800,300 M 0,350 L 800,350 M 0,400 L 800,400 M 0,450 L 800,450 M 0,500 L 800,500 M 0,550 L 800,550" stroke="#7B2FF7" stroke-width="1"/>
+    <path d="M 50,0 L 50,600 M 100,0 L 100,600 M 150,0 L 150,600 M 200,0 L 200,600 M 250,0 L 250,600 M 300,0 L 300,600 M 350,0 L 350,600 M 400,0 L 400,600 M 450,0 L 450,600 M 500,0 L 500,600 M 550,0 L 550,600 M 600,0 L 600,600 M 650,0 L 650,600 M 700,0 L 700,600 M 750,0 L 750,600" stroke="#7B2FF7" stroke-width="1"/>
+  </g>
+  
+  <!-- Glowing Background Orbs -->
+  <circle cx="100" cy="100" r="180" fill="#7B2FF7" opacity="0.15" filter="url(#glow)"/>
+  <circle cx="700" cy="450" r="220" fill="#00C6FF" opacity="0.1" filter="url(#glow)"/>
+
+  <!-- MOCK DASHBOARD FRAME -->
+  <g filter="url(#cardShadow)">
+    <!-- Main Window Background -->
+    <rect x="60" y="50" width="680" height="500" rx="16" fill="#0c0926" fill-opacity="0.8" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+    
+    <!-- Top Window Bar -->
+    <rect x="60" y="50" width="680" height="45" rx="16" fill="#130f38" fill-opacity="0.9"/>
+    <!-- Window Controls -->
+    <circle cx="85" cy="72" r="6" fill="#FF5F56"/>
+    <circle cx="101" cy="72" r="6" fill="#FFBD2E"/>
+    <circle cx="117" cy="72" r="6" fill="#27C93F"/>
+    
+    <!-- Window Title -->
+    <text x="400" y="77" fill="rgba(255, 255, 255, 0.6)" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle" letter-spacing="1">nexacloud.io/dashboard</text>
+    
+    <!-- Sidebar -->
+    <rect x="60" y="95" width="160" height="455" fill="#0e0a2d" fill-opacity="0.4" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    
+    <!-- Sidebar Items (Mock) -->
+    <!-- Logo -->
+    <rect x="80" y="125" width="24" height="24" rx="6" fill="url(#primaryGrad)"/>
+    <text x="114" y="141" fill="#fff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">NexaCloud</text>
+    
+    <!-- Active Nav Item -->
+    <rect x="72" y="180" width="136" height="34" rx="8" fill="rgba(123, 47, 247, 0.15)"/>
+    <rect x="72" y="180" width="4" height="34" rx="2" fill="#7B2FF7"/>
+    <rect x="86" y="191" width="12" height="12" rx="3" fill="#7B2FF7"/>
+    <text x="108" y="201" fill="#fff" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Overview</text>
+    
+    <!-- Other Nav Items -->
+    <rect x="86" y="237" width="12" height="12" rx="3" fill="rgba(255,255,255,0.25)"/>
+    <text x="108" y="247" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="12" font-weight="500">Analytics</text>
+    
+    <rect x="86" y="277" width="12" height="12" rx="3" fill="rgba(255,255,255,0.25)"/>
+    <text x="108" y="287" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="12" font-weight="500">Campaigns</text>
+    
+    <rect x="86" y="317" width="12" height="12" rx="3" fill="rgba(255,255,255,0.25)"/>
+    <text x="108" y="327" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="12" font-weight="500">Settings</text>
+    
+    <!-- MAIN CONTENT AREA -->
+    <!-- Stat Card 1 -->
+    <rect x="240" y="120" width="150" height="90" rx="12" fill="#130f38" fill-opacity="0.6" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <text x="256" y="145" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="11" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Active Users</text>
+    <text x="256" y="180" fill="#fff" font-family="system-ui, sans-serif" font-size="24" font-weight="700">14,282</text>
+    <text x="256" y="198" fill="#27C93F" font-family="system-ui, sans-serif" font-size="10" font-weight="600">▲ +12.4% this wk</text>
+
+    <!-- Stat Card 2 -->
+    <rect x="405" y="120" width="150" height="90" rx="12" fill="#130f38" fill-opacity="0.6" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <text x="421" y="145" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="11" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Monthly Revenue</text>
+    <text x="421" y="180" fill="#fff" font-family="system-ui, sans-serif" font-size="24" font-weight="700">$94,150</text>
+    <text x="421" y="198" fill="#27C93F" font-family="system-ui, sans-serif" font-size="10" font-weight="600">▲ +8.2% vs target</text>
+
+    <!-- Stat Card 3 (Radial Chart) -->
+    <rect x="570" y="120" width="150" height="90" rx="12" fill="#130f38" fill-opacity="0.6" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <!-- Radial Progress Circle -->
+    <circle cx="680" cy="165" r="24" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="6"/>
+    <circle cx="680" cy="165" r="24" fill="none" stroke="url(#primaryGrad)" stroke-width="6" stroke-dasharray="150.7" stroke-dashoffset="40" stroke-linecap="round" transform="rotate(-90 680 165)"/>
+    <text x="680" cy="169" fill="#fff" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">73%</text>
+    <text x="586" y="145" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="11" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Server Load</text>
+    <text x="586" y="175" fill="#fff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Optimal</text>
+    <text x="586" y="194" fill="rgba(255,255,255,0.3)" font-family="system-ui, sans-serif" font-size="10">8 Cores active</text>
+
+    <!-- Main Chart Card -->
+    <rect x="240" y="225" width="480" height="300" rx="16" fill="#110d32" fill-opacity="0.8" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <text x="260" y="255" fill="#fff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">Real-time Analytics Flow</text>
+    <text x="260" y="272" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="11">Data stream latency: 14ms</text>
+    
+    <!-- Time Tabs -->
+    <rect x="615" y="240" width="90" height="24" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <rect x="617" y="242" width="28" height="20" rx="4" fill="#7B2FF7"/>
+    <text x="631" y="256" fill="#fff" font-family="system-ui, sans-serif" font-size="10" font-weight="700" text-anchor="middle">1H</text>
+    <text x="660" y="256" fill="rgba(255,255,255,0.5)" font-family="system-ui, sans-serif" font-size="10" font-weight="500" text-anchor="middle">1D</text>
+    <text x="689" y="256" fill="rgba(255,255,255,0.5)" font-family="system-ui, sans-serif" font-size="10" font-weight="500" text-anchor="middle">1W</text>
+
+    <!-- Chart Grid Lines -->
+    <line x1="260" y1="320" x2="700" y2="320" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    <line x1="260" y1="365" x2="700" y2="365" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    <line x1="260" y1="410" x2="700" y2="410" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    <line x1="260" y1="455" x2="700" y2="455" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    <line x1="260" y1="500" x2="700" y2="500" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    
+    <!-- Chart Paths -->
+    <!-- Purple Gradient Area -->
+    <path d="M 260,500 L 260,420 Q 300,380 340,430 T 420,350 T 500,410 T 580,310 T 660,390 T 700,290 L 700,500 Z" fill="url(#purpleChartGrad)" />
+    <!-- Purple Chart Line -->
+    <path d="M 260,420 Q 300,380 340,430 T 420,350 T 500,410 T 580,310 T 660,390 T 700,290" fill="none" stroke="#7B2FF7" stroke-width="3" stroke-linecap="round" filter="url(#glow)" opacity="0.8"/>
+    
+    <!-- Cyan Gradient Area -->
+    <path d="M 260,500 L 260,380 Q 300,440 340,320 T 420,390 T 500,290 T 580,350 T 660,260 T 700,320 L 700,500 Z" fill="url(#chartGrad)" />
+    <!-- Cyan Chart Line -->
+    <path d="M 260,380 Q 300,440 340,320 T 420,390 T 500,290 T 580,350 T 660,260 T 700,320" fill="none" stroke="#00C6FF" stroke-width="3" stroke-linecap="round" filter="url(#glow)"/>
+    
+    <!-- Interactive Dot on Cyan Line at (500,290) -->
+    <circle cx="500" cy="290" r="6" fill="#00C6FF" stroke="#fff" stroke-width="2" filter="url(#glow)"/>
+    
+    <!-- Tooltip -->
+    <rect x="440" y="220" width="120" height="50" rx="8" fill="#171242" stroke="#00C6FF" stroke-width="1" filter="url(#cardShadow)"/>
+    <text x="500" y="238" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle" font-weight="600">SATURDAY 14:00</text>
+    <text x="500" y="256" fill="#fff" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">$12,892.40</text>
+  </g>
+</svg>
