@@ -1,3 +1,5 @@
+"use client";
+
 import LandingNavbar from "@/components/landing/LandingNavbar";
 import LandingHero from "@/components/landing/LandingHero";
 import InfinityFlow from "@/components/InfinityFlow";
@@ -6,6 +8,7 @@ import Portfolio from "@/components/Portfolio";
 import Testimonials from "@/components/Testimonials";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import Preloader from "@/components/Preloader";
 
 export default function Home() {
   return (
@@ -16,6 +19,8 @@ export default function Home() {
         position: "relative",
       }}
     >
+      {/* ── Page Preloader ── */}
+      <Preloader />
       {/* ── New Landing Navbar ── */}
       <LandingNavbar />
 
