@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import SmoothScroll from "../components/SmoothScroll";
 import "./globals.css";
 
 const spectre = localFont({
@@ -53,7 +54,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${spectre.variable} ${data70.variable} antialiased noise-overlay`}>
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
