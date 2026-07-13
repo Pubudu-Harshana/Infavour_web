@@ -153,6 +153,7 @@ export default function LandingHero() {
     const drawStars = () => {
       ctx.clearRect(0, 0, w, h);
       const cx = w / 2, cy = h / 2;
+      const activeStars: { x: number; y: number }[] = [];
       stars.forEach((s) => {
         const scale = 1 / (1 - s.z * 0.8);
         const sx = cx + s.x * scale;
@@ -168,76 +169,41 @@ export default function LandingHero() {
         s.z += s.speed * 0.004;
         if (s.z >= 1 || sx < -80 || sx > w+80 || sy < -80 || sy > h+80) {
           Object.assign(s, mkStar(), { z: 0.01 });
+        } else {
+          const dx = sx - mousePos.x;
+          const dy = sy - mousePos.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 130) {
+            activeStars.push({ x: sx, y: sy });
+            const alpha = (1 - dist / 130) * 0.22;
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(mousePos.x, mousePos.y);
+            ctx.strokeStyle = `rgba(0, 212, 232, ${alpha})`;
+            ctx.lineWidth = 0.65;
+            ctx.stroke();
+          }
         }
       });
-    };
 
-    /* ── EFFECT 5: Cosmic Floating Dust with Gravitational Repulsion ── */
-    type FloatingDust = {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      size: number;
-      color: string;
-      opacity: number;
-    };
-    const floatingDust: FloatingDust[] = [];
-    const dustColors = ["#00d4e8", "#7B2FF7", "#a855f7", "#ffffff", "#00c6ff"];
-
-    for (let i = 0; i < 95; i++) {
-      floatingDust.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        size: Math.random() * 2.2 + 0.9,
-        color: dustColors[Math.floor(Math.random() * dustColors.length)],
-        opacity: Math.random() * 0.45 + 0.25,
-      });
-    }
-
-    const drawFloatingDust = () => {
-      floatingDust.forEach((p) => {
-        // Gravitational repulsion from mouse
-        const dx = p.x - mousePos.x;
-        const dy = p.y - mousePos.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 160) {
-          const force = (160 - dist) / 160;
-          const angle = Math.atan2(dy, dx);
-          p.x += Math.cos(angle) * force * 4.5;
-          p.y += Math.sin(angle) * force * 4.5;
+      for (let i = 0; i < activeStars.length; i++) {
+        for (let j = i + 1; j < activeStars.length; j++) {
+          const s1 = activeStars[i];
+          const s2 = activeStars[j];
+          const dx = s1.x - s2.x;
+          const dy = s1.y - s2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 95) {
+            const alpha = (1 - dist / 95) * 0.15;
+            ctx.beginPath();
+            ctx.moveTo(s1.x, s1.y);
+            ctx.lineTo(s2.x, s2.y);
+            ctx.strokeStyle = `rgba(123, 47, 247, ${alpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
         }
-
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vx *= 0.96;
-        p.vy *= 0.96;
-        p.vx += (Math.random() - 0.5) * 0.04;
-        p.vy += (Math.random() - 0.5) * 0.04;
-
-        const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-        if (speed > 0.7) {
-          p.vx = (p.vx / speed) * 0.7;
-          p.vy = (p.vy / speed) * 0.7;
-        }
-
-        if (p.x < -20) p.x = w + 20;
-        if (p.x > w + 20) p.x = -20;
-        if (p.y < -20) p.y = h + 20;
-        if (p.y > h + 20) p.y = -20;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.opacity;
-        ctx.shadowBlur = 6;
-        ctx.shadowColor = p.color;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-        ctx.globalAlpha = 1;
-      });
+      }
     };
 
     /* ── EFFECT 2: Mouse Parallax on Astronaut + Coordinate Tracking ── ACTIVE ── */
@@ -259,7 +225,6 @@ export default function LandingHero() {
     /* ── Main loop ───────────────────────────────────────────── */
     const loop = () => {
       drawStars();
-      drawFloatingDust();
       animId = requestAnimationFrame(loop);
     };
 
