@@ -149,6 +149,7 @@ export default function LandingHero() {
       color: colors[Math.floor(Math.random() * colors.length)],
     });
     const stars: Star[] = Array.from({ length: 280 }, mkStar);
+    const mousePos = { x: -1000, y: -1000 };
     const drawStars = () => {
       ctx.clearRect(0, 0, w, h);
       const cx = w / 2, cy = h / 2;
@@ -171,168 +172,94 @@ export default function LandingHero() {
       });
     };
 
-    /* ── EFFECT 1: Shooting Stars (Interactive meteors) ── */
-    type Shooter = { x:number; y:number; vx:number; vy:number; life:number; maxLife:number; len:number };
-    const shooters: Shooter[] = [];
-    let nextShoot = Date.now() + 2000;
-
-    const spawnShooter = (sx?: number, sy?: number, angle?: number, speed?: number) => {
-      const shAngle = angle !== undefined ? angle : Math.PI / 5 + (Math.random() - 0.5) * 0.4;
-      const shSpeed = speed !== undefined ? speed : 12 + Math.random() * 6;
-      const startX = sx !== undefined ? sx : Math.random() * w * 0.6;
-      const startY = sy !== undefined ? sy : Math.random() * h * 0.3;
-
-      shooters.push({
-        x: startX,
-        y: startY,
-        vx: Math.cos(shAngle) * shSpeed,
-        vy: Math.sin(shAngle) * shSpeed,
-        life: 0,
-        maxLife: 28 + Math.random() * 18,
-        len: 70 + Math.random() * 65,
-      });
-    };
-
-    const drawShooters = () => {
-      const now = Date.now();
-      if (now > nextShoot) {
-        spawnShooter();
-        nextShoot = now + 4000 + Math.random() * 6000;
-      }
-      for (let i = shooters.length - 1; i >= 0; i--) {
-        const sh = shooters[i];
-        const p = sh.life / sh.maxLife;
-        const alpha = p < 0.25 ? p / 0.25 : 1 - (p - 0.25) / 0.75;
-        const tailX = sh.x - sh.vx * (sh.len / 12);
-        const tailY = sh.y - sh.vy * (sh.len / 12);
-        const grad = ctx.createLinearGradient(tailX, tailY, sh.x, sh.y);
-        grad.addColorStop(0, "rgba(255,255,255,0)");
-        grad.addColorStop(1, `rgba(0,212,232,${(alpha * 0.95).toFixed(2)})`);
-        ctx.beginPath();
-        ctx.moveTo(tailX, tailY);
-        ctx.lineTo(sh.x, sh.y);
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = 2.0;
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(sh.x, sh.y, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(2)})`;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "#00d4e8";
-        ctx.fill();
-        ctx.shadowBlur = 0;
-
-        sh.x += sh.vx; sh.y += sh.vy; sh.life++;
-        if (sh.life >= sh.maxLife || sh.x < -100 || sh.x > w+100 || sh.y < -100 || sh.y > h+100) {
-          shooters.splice(i, 1);
-        }
-      }
-    };
-
-    /* ── EFFECT 4: Interactive Space Dust Mouse Trail ── */
-    type DustParticle = {
+    /* ── EFFECT 5: Cosmic Floating Dust with Gravitational Repulsion ── */
+    type FloatingDust = {
       x: number;
       y: number;
       vx: number;
       vy: number;
       size: number;
       color: string;
-      alpha: number;
-      decay: number;
+      opacity: number;
     };
-    const dustParticles: DustParticle[] = [];
+    const floatingDust: FloatingDust[] = [];
     const dustColors = ["#00d4e8", "#7B2FF7", "#a855f7", "#ffffff", "#00c6ff"];
 
-    const spawnDust = (mx: number, my: number) => {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 1.4 + 0.3;
-      dustParticles.push({
-        x: mx,
-        y: my,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 0.15, // slight upward drift
-        size: Math.random() * 2.5 + 1.2,
+    for (let i = 0; i < 95; i++) {
+      floatingDust.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        size: Math.random() * 2.2 + 0.9,
         color: dustColors[Math.floor(Math.random() * dustColors.length)],
-        alpha: 1.0,
-        decay: Math.random() * 0.015 + 0.012,
+        opacity: Math.random() * 0.45 + 0.25,
       });
-      if (dustParticles.length > 90) dustParticles.shift();
-    };
+    }
 
-    const drawDust = () => {
-      for (let i = dustParticles.length - 1; i >= 0; i--) {
-        const p = dustParticles[i];
+    const drawFloatingDust = () => {
+      floatingDust.forEach((p) => {
+        // Gravitational repulsion from mouse
+        const dx = p.x - mousePos.x;
+        const dy = p.y - mousePos.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 160) {
+          const force = (160 - dist) / 160;
+          const angle = Math.atan2(dy, dx);
+          p.x += Math.cos(angle) * force * 4.5;
+          p.y += Math.sin(angle) * force * 4.5;
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vx *= 0.96;
+        p.vy *= 0.96;
+        p.vx += (Math.random() - 0.5) * 0.04;
+        p.vy += (Math.random() - 0.5) * 0.04;
+
+        const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+        if (speed > 0.7) {
+          p.vx = (p.vx / speed) * 0.7;
+          p.vy = (p.vy / speed) * 0.7;
+        }
+
+        if (p.x < -20) p.x = w + 20;
+        if (p.x > w + 20) p.x = -20;
+        if (p.y < -20) p.y = h + 20;
+        if (p.y > h + 20) p.y = -20;
+
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha;
-        ctx.shadowBlur = 8;
+        ctx.globalAlpha = p.opacity;
+        ctx.shadowBlur = 6;
         ctx.shadowColor = p.color;
         ctx.fill();
         ctx.shadowBlur = 0;
         ctx.globalAlpha = 1;
-
-        p.x += p.vx;
-        p.y += p.vy;
-        p.alpha -= p.decay;
-        if (p.alpha <= 0) {
-          dustParticles.splice(i, 1);
-        }
-      }
+      });
     };
 
-    /* ── EFFECT 2: Mouse Parallax on Astronaut + Mouse Trail ── ACTIVE ── */
-    const lastMousePos = { x: 0, y: 0, time: Date.now() };
-
+    /* ── EFFECT 2: Mouse Parallax on Astronaut + Coordinate Tracking ── ACTIVE ── */
     const onMouseMove = (e: MouseEvent) => {
+      mousePos.x = e.clientX;
+      mousePos.y = e.clientY;
+
       if (astronautRef.current) {
         const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
         const dx = ((e.clientX - cx) / cx) * 20;
         const dy = ((e.clientY - cy) / cy) * 15;
         astronautRef.current.style.transform = `translate(${dx}px, ${dy}px)`;
       }
-
-      spawnDust(e.clientX, e.clientY);
-      if (Math.random() < 0.5) {
-        spawnDust(e.clientX, e.clientY);
-      }
-
-      // Fast swipe check to fire meteors
-      const now = Date.now();
-      const dt = now - lastMousePos.time;
-      if (dt > 40) {
-        const dx = e.clientX - lastMousePos.x;
-        const dy = e.clientY - lastMousePos.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const speed = dist / dt;
-        if (speed > 1.8) {
-          const angle = Math.atan2(dy, dx);
-          spawnShooter(e.clientX, e.clientY, angle, speed * 8);
-        }
-        lastMousePos.x = e.clientX;
-        lastMousePos.y = e.clientY;
-        lastMousePos.time = now;
-      }
     };
     window.addEventListener("mousemove", onMouseMove);
-
-    const onCanvasClick = (e: MouseEvent) => {
-      for (let i = 0; i < 3; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 9 + Math.random() * 7;
-        spawnShooter(e.clientX, e.clientY, angle, speed);
-      }
-    };
-    window.addEventListener("click", onCanvasClick);
 
     /* ── EFFECT 3: Nebula Pulse ── ACTIVE ── */
 
     /* ── Main loop ───────────────────────────────────────────── */
     const loop = () => {
       drawStars();
-      drawShooters();
-      drawDust();
+      drawFloatingDust();
       animId = requestAnimationFrame(loop);
     };
 
@@ -343,7 +270,6 @@ export default function LandingHero() {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("click", onCanvasClick);
     };
   }, []);
 
