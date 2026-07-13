@@ -87,7 +87,7 @@ export default function LandingNavbar() {
           }}
         >
           <Image
-            src="/Images/logo.png"
+            src="/logoiconblue.svg"
             alt="Infavour Solutions Logo"
             width={130}
             height={40}
