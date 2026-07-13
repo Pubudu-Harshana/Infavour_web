@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 const footerLinks = [
   {
@@ -86,8 +87,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
-              <span style={{ fontSize: "24px", fontWeight: 900, background: "linear-gradient(135deg,#7B2FF7,#00C6FF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontFamily: "Outfit, sans-serif" }}>∞</span>
-              <span style={{ fontSize: "20px", fontWeight: 800, color: "#fff", fontFamily: "Outfit, sans-serif", letterSpacing: "0.08em" }}>INFAVOUR</span>
+              <Image
+                src="/logowithnameblue.svg"
+                alt="Infavour Solutions Logo"
+                width={130}
+                height={40}
+                style={{ objectFit: "contain", width: "auto", height: "40px" }}
+              />
             </div>
             <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.38)", lineHeight: 1.75, maxWidth: "220px" }}>
               Infinite creativity. Premium digital solutions. Futuristic innovation — crafted for brands that demand more.
