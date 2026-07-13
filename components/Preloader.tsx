@@ -88,6 +88,7 @@ export default function Preloader() {
                 {/* Subdued Background Loop Path */}
                 <path
                   d="M 100,75 C 130,25 180,25 180,75 C 180,125 130,125 100,75 C 70,25 20,25 20,75 C 20,125 70,125 100,75 Z"
+                  pathLength="100"
                   fill="none"
                   stroke="rgba(255, 255, 255, 0.03)"
                   stroke-width="12"
@@ -97,12 +98,13 @@ export default function Preloader() {
                 {/* Main Glowing Infinity Path */}
                 <motion.path
                   d="M 100,75 C 130,25 180,25 180,75 C 180,125 130,125 100,75 C 70,25 20,25 20,75 C 20,125 70,125 100,75 Z"
+                  pathLength="100"
                   fill="none"
                   stroke="url(#infinityGrad)"
                   stroke-width="8"
                   stroke-linecap="round"
                   filter="url(#infinityGlow)"
-                  initial={{ strokeDasharray: "290 290", strokeDashoffset: 580 }}
+                  initial={{ strokeDasharray: "25 25 25 25", strokeDashoffset: 100 }}
                   animate={{ strokeDashoffset: 0 }}
                   transition={{
                     repeat: Infinity,
@@ -114,12 +116,13 @@ export default function Preloader() {
                 {/* Internal High-energy Laser Tracer */}
                 <motion.path
                   d="M 100,75 C 130,25 180,25 180,75 C 180,125 130,125 100,75 C 70,25 20,25 20,75 C 20,125 70,125 100,75 Z"
+                  pathLength="100"
                   fill="none"
                   stroke="#fff"
                   stroke-width="2"
                   stroke-linecap="round"
                   opacity="0.9"
-                  initial={{ strokeDasharray: "70 510", strokeDashoffset: 580 }}
+                  initial={{ strokeDasharray: "8 42 8 42", strokeDashoffset: 100 }}
                   animate={{ strokeDashoffset: 0 }}
                   transition={{
                     repeat: Infinity,
