@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/react";
 import SmoothScroll from "../components/SmoothScroll";
 import "./globals.css";
 
@@ -55,6 +56,7 @@ export default function RootLayout({
       </head>
       <body className={`${spectre.variable} ${data70.variable} antialiased noise-overlay`}>
         <SmoothScroll>{children}</SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );
