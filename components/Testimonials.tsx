@@ -5,11 +5,11 @@ import { motion, useInView } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
 const testimonials = [
-  { name: "Arjun Mehta", role: "CEO, NexaCloud", text: "INFAVOUR completely transformed our online presence. The website they built is a masterpiece — fast, beautiful, and our conversions went up 200%. Absolute professionals.", rating: 5, avatar: "AM", color: "#7B2FF7", country: "🇮🇳" },
-  { name: "Sarah Williams", role: "Founder, Aura Beauty", text: "I've worked with many agencies, but INFAVOUR is on another level. The brand identity they created tells our story perfectly. Every detail was thoughtfully crafted.", rating: 5, avatar: "SW", color: "#00C6FF", country: "🇬🇧" },
-  { name: "Dilshan Perera", role: "CMO, Orbital Tech", text: "The launch video INFAVOUR produced went viral. 1 million views in 48 hours. The quality was cinematic, the storytelling was perfect. Couldn't be happier.", rating: 5, avatar: "DP", color: "#a855f7", country: "🇱🇰" },
-  { name: "Maya Chen", role: "Product Lead, CryptoVault", text: "From design to deployment, INFAVOUR delivered beyond expectations. The DeFi platform UI they built is the best in the space. Our users love it.", rating: 5, avatar: "MC", color: "#38bdf8", country: "🇸🇬" },
-  { name: "Rohan Sharma", role: "Director, Nova Media", text: "Working with INFAVOUR felt like having a top-tier in-house team. They understood our vision instantly and delivered a social campaign that exceeded every KPI.", rating: 5, avatar: "RS", color: "#fb923c", country: "🇦🇪" },
+  { name: "Sahan Wickramasinghe", role: "Managing Director, CarVibes.lk", text: "INFAVOUR completely transformed our online presence. Our detailing appointments and package inquiries surged by 300% within the first month. Incredible design and execution.", rating: 5, avatar: "SW", color: "#FF2E63", country: "🇱🇰" },
+  { name: "Ravi Kumara", role: "Founder, Ravi Tours & Travels", text: "Our inbound tour inquiries from Europe and the Americas surged after launching our new platform. The itinerary builder and instant WhatsApp booking flow work seamlessly.", rating: 5, avatar: "RK", color: "#00C6FF", country: "🇱🇰" },
+  { name: "Nadeem Al-Hassan", role: "Operations Lead, FreshLync", text: "INFAVOUR delivered an exceptional supply chain portal. The real-time temperature tracking and live dispatch interface gave our agricultural exporters unprecedented reliability.", rating: 5, avatar: "NA", color: "#10B981", country: "🇦🇪" },
+  { name: "Dilshan Perera", role: "CMO, Ceylon Media", text: "The promotional campaign video INFAVOUR produced went viral. Over 1 million views in 48 hours. The cinematic quality and storytelling were world-class.", rating: 5, avatar: "DP", color: "#a855f7", country: "🇱🇰" },
+  { name: "Maya Chen", role: "Product Designer, Global Exports", text: "From design system to full Next.js deployment, INFAVOUR delivered beyond expectations. Fast turnaround, pixel-perfect layouts, and top-tier code quality.", rating: 5, avatar: "MC", color: "#38bdf8", country: "🇸🇬" },
 ];
 
 export default function Testimonials() {
@@ -124,9 +124,10 @@ function TestimonialCard({ item }: CardProps) {
         flexShrink: 0,
         padding: "32px",
         borderRadius: "24px",
-        background: "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
-        border: "1px solid rgba(255, 255, 255, 0.05)",
+        background: "linear-gradient(135deg, rgba(14, 6, 32, 0.88) 0%, rgba(7, 3, 20, 0.95) 100%)",
+        border: "1px solid rgba(255, 255, 255, 0.1)",
         backdropFilter: "blur(24px)",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
         position: "relative",
         overflow: "hidden",
         transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
@@ -134,22 +135,22 @@ function TestimonialCard({ item }: CardProps) {
       }}
       onMouseEnter={(e) => {
         const card = e.currentTarget as HTMLElement;
-        card.style.borderColor = `${item.color}45`;
+        card.style.borderColor = `${item.color}60`;
         card.style.transform = "translateY(-6px) scale(1.015)";
-        card.style.boxShadow = `0 15px 40px ${item.color}15, inset 0 0 15px ${item.color}08`;
+        card.style.boxShadow = `0 18px 45px ${item.color}25, 0 0 0 1px ${item.color}40`;
       }}
       onMouseLeave={(e) => {
         const card = e.currentTarget as HTMLElement;
-        card.style.borderColor = "rgba(255, 255, 255, 0.05)";
+        card.style.borderColor = "rgba(255, 255, 255, 0.1)";
         card.style.transform = "translateY(0) scale(1)";
-        card.style.boxShadow = "none";
+        card.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)";
       }}
     >
       {/* Subtle Glow behind the card */}
-      <div style={{ position: "absolute", top: "-50px", right: "-50px", width: "120px", height: "120px", background: `radial-gradient(circle, ${item.color}18 0%, transparent 70%)`, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: "-50px", right: "-50px", width: "120px", height: "120px", background: `radial-gradient(circle, ${item.color}25 0%, transparent 70%)`, pointerEvents: "none" }} />
 
       {/* Floating Quote Icon */}
-      <div style={{ position: "absolute", top: "24px", right: "24px", opacity: 0.08, color: item.color }}>
+      <div style={{ position: "absolute", top: "24px", right: "24px", opacity: 0.12, color: item.color }}>
         <Quote size={32} />
       </div>
 
@@ -161,7 +162,7 @@ function TestimonialCard({ item }: CardProps) {
       </div>
 
       {/* Testimonial text */}
-      <p style={{ fontSize: "14.5px", color: "rgba(255,255,255,0.72)", lineHeight: 1.65, marginBottom: "24px", fontFamily: "Inter, sans-serif", fontWeight: 400 }}>
+      <p style={{ fontSize: "14.5px", color: "rgba(255,255,255,0.88)", lineHeight: 1.68, marginBottom: "24px", fontFamily: "Inter, sans-serif", fontWeight: 400, textShadow: "0 1px 3px rgba(0,0,0,0.6)" }}>
         &ldquo;{item.text}&rdquo;
       </p>
 

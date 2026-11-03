@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050212" />
+      <stop offset="50%" stop-color="#0a0520" />
+      <stop offset="100%" stop-color="#03010b" />
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7B2FF7" />
+      <stop offset="100%" stop-color="#00C6FF" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.06)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0.01)" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="40" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)" />
+
+  <!-- Ambient background glow orbs -->
+  <circle cx="200" cy="180" r="300" fill="#7B2FF7" opacity="0.22" filter="url(#glow)" />
+  <circle cx="1000" cy="450" r="350" fill="#00C6FF" opacity="0.18" filter="url(#glow)" />
+
+  <!-- Grid overlay -->
+  <g opacity="0.08">
+    <path d="M0,70 L1200,70 M0,140 L1200,140 M0,210 L1200,210 M0,280 L1200,280 M0,350 L1200,350 M0,420 L1200,420 M0,490 L1200,490 M0,560 L1200,560" stroke="#7B2FF7" stroke-width="1" />
+    <path d="M100,0 L100,630 M200,0 L200,630 M300,0 L300,630 M400,0 L400,630 M500,0 L500,630 M600,0 L600,630 M700,0 L700,630 M800,0 L800,630 M900,0 L900,630 M1000,0 L1000,630 M1100,0 L1100,630" stroke="#00C6FF" stroke-width="1" />
+  </g>
+
+  <!-- Content Box -->
+  <g transform="translate(100, 110)">
+    <!-- Top Pill -->
+    <rect width="250" height="36" rx="18" fill="rgba(123,47,247,0.2)" stroke="rgba(123,47,247,0.5)" stroke-width="1" />
+    <text x="125" y="23" font-family="'Outfit', sans-serif, system-ui" font-size="12" font-weight="800" fill="#00C6FF" letter-spacing="3" text-anchor="middle">DIGITAL MEDIA AGENCY</text>
+
+    <!-- Main Headline -->
+    <text x="0" y="115" font-family="'Outfit', sans-serif, system-ui" font-size="74" font-weight="900" fill="#FFFFFF" letter-spacing="-1.5">
+      INFAVOUR <tspan fill="url(#brandGrad)">SOLUTIONS</tspan>
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="170" font-family="'Outfit', sans-serif, system-ui" font-size="24" font-weight="600" fill="#A098C8" letter-spacing="1">
+      Web Development · Brand Identity · Video Production
+    </text>
+
+    <text x="0" y="215" font-family="'Inter', sans-serif, system-ui" font-size="17" fill="rgba(255,255,255,0.6)" width="700">
+      Crafting infinite digital experiences for high-growth global businesses and enterprises.
+    </text>
+
+    <!-- Client Badges -->
+    <g transform="translate(0, 290)">
+      <rect width="180" height="46" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
+      <text x="90" y="28" font-family="'Outfit', sans-serif, system-ui" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">✦ CarVibes.lk</text>
+
+      <g transform="translate(195, 0)">
+        <rect width="210" height="46" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
+        <text x="105" y="28" font-family="'Outfit', sans-serif, system-ui" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">✦ Ravi Tours &amp; Travels</text>
+      </g>
+
+      <g transform="translate(420, 0)">
+        <rect width="180" height="46" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
+        <text x="90" y="28" font-family="'Outfit', sans-serif, system-ui" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">✦ FreshLync.live</text>
+      </g>
+    </g>
+
+    <!-- Footer URL -->
+    <text x="0" y="420" font-family="'Outfit', sans-serif, system-ui" font-size="16" font-weight="700" fill="#7B2FF7" letter-spacing="1">
+      infavour.tech <tspan fill="rgba(255,255,255,0.4)">· Colombo, Sri Lanka</tspan>
+    </text>
+  </g>
+</svg>
+

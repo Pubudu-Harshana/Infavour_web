@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { siteConfig } from "@/config/site";
 
 const footerLinks = [
   {
@@ -24,9 +25,9 @@ const footerLinks = [
   {
     heading: "Connect",
     links: [
-      { label: "infavoursolutions@gmail.com", href: "mailto:infavoursolutions@gmail.com" },
-      { label: "+94 71 059 4305", href: "https://wa.me/94710594305?text=Hi%20INFAVOUR%20SOLUTIONS,%20I'm%20interested%20in%20your%20services!" },
-      { label: "Colombo, Sri Lanka", href: "#" },
+      { label: siteConfig.email, href: `mailto:${siteConfig.email}` },
+      { label: siteConfig.phoneFormatted, href: siteConfig.whatsappUrl },
+      { label: `${siteConfig.location} 🇱🇰`, href: "#" },
     ],
   },
 ];
@@ -34,7 +35,7 @@ const footerLinks = [
 const socials = [
   {
     label: "Facebook",
-    href: "https://www.facebook.com/share/1JLFFksvLk/?mibextid=wwXIfr",
+    href: siteConfig.socials.facebook,
     svg: (props: React.SVGProps<SVGSVGElement>) => (
       <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />

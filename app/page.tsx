@@ -2,6 +2,7 @@
 
 import LandingNavbar from "@/components/landing/LandingNavbar";
 import LandingHero from "@/components/landing/LandingHero";
+import ClientLogos from "@/components/ClientLogos";
 import InfinityFlow from "@/components/InfinityFlow";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Portfolio from "@/components/Portfolio";
@@ -26,6 +27,9 @@ export default function Home() {
 
       {/* ── New Landing Hero (space bg + astronaut) ── */}
       <LandingHero />
+
+      {/* ── Client Trust Bar ── */}
+      <ClientLogos />
 
       {/* ── Section Divider ── */}
       <div className="section-divider" />

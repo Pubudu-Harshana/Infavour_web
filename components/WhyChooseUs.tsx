@@ -183,22 +183,22 @@ function TiltCard({ reason, index }: { reason: typeof reasons[0]; index: number 
           (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 60px ${reason.glow}20, 0 0 0 1px ${reason.color}45`;
           (e.currentTarget as HTMLElement).style.borderColor = `${reason.color}50`;
         }}
-        style={{ position: "relative", padding: "32px", borderRadius: "20px", background: "rgba(255,255,255,0.028)", border: `1px solid ${reason.color}28`, backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)", transformStyle: "preserve-3d", transition: "transform 0.15s ease, box-shadow 0.3s ease, border-color 0.3s ease", overflow: "hidden", cursor: "default" }}
+        style={{ position: "relative", padding: "32px", borderRadius: "20px", background: "linear-gradient(145deg, rgba(14, 7, 32, 0.88) 0%, rgba(6, 2, 18, 0.95) 100%)", border: `1px solid ${reason.color}35`, backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)", transformStyle: "preserve-3d", transition: "transform 0.15s ease, box-shadow 0.3s ease, border-color 0.3s ease", overflow: "hidden", cursor: "default", boxShadow: "0 10px 30px rgba(0,0,0,0.4)" }}
       >
         {/* Corner accent */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "120px", height: "120px", background: `radial-gradient(circle at top right, ${reason.glow}15 0%, transparent 70%)`, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, right: 0, width: "120px", height: "120px", background: `radial-gradient(circle at top right, ${reason.glow}25 0%, transparent 70%)`, pointerEvents: "none" }} />
         {/* Bottom accent line */}
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: `linear-gradient(90deg, transparent, ${reason.color}50, transparent)` }} />
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: `linear-gradient(90deg, transparent, ${reason.color}70, transparent)` }} />
 
         {/* Icon */}
-        <div style={{ width: "50px", height: "50px", borderRadius: "14px", display: "flex", alignItems: "center", justifyContent: "center", background: `${reason.color}18`, border: `1px solid ${reason.color}30`, boxShadow: `0 0 20px ${reason.glow}20`, marginBottom: "20px" }}>
-          <Icon size={22} color={reason.color} />
+        <div style={{ width: "52px", height: "52px", borderRadius: "14px", display: "flex", alignItems: "center", justifyContent: "center", background: `${reason.color}22`, border: `1px solid ${reason.color}45`, boxShadow: `0 0 25px ${reason.glow}30`, marginBottom: "22px" }}>
+          <Icon size={24} color={reason.color} />
         </div>
 
-        <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#fff", fontFamily: "Outfit, sans-serif", marginBottom: "10px" }}>
+        <h3 style={{ fontSize: "19px", fontWeight: 800, color: "#fff", fontFamily: "Outfit, sans-serif", marginBottom: "12px", letterSpacing: "-0.01em", textShadow: "0 2px 4px rgba(0,0,0,0.6)" }}>
           {reason.title}
         </h3>
-        <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.42)", lineHeight: 1.75 }}>
+        <p style={{ fontSize: "13.5px", color: "rgba(255,255,255,0.75)", lineHeight: 1.75 }}>
           {reason.description}
         </p>
       </div>
