@@ -70,7 +70,7 @@ const portfolioItems: PortfolioItem[] = [
     category: "Design",
     title: "Medical AI Book & Editorial",
     description:
-      "Official book cover design, typography, and 3D publication presentation for 'Artificial Intelligence for Medical Education and Research' by Dr. Suneth Pathirana.",
+      "Official book cover design, typography, and 3D publication presentation for 'Artificial Intelligence for Medical Education and Research' academic publication.",
     tags: ["Book Cover", "Publication", "Editorial Design"],
     icon: Layers,
     gradient: "linear-gradient(135deg, #F59E0B 0%, #1e1203 100%)",
@@ -100,7 +100,7 @@ const portfolioItems: PortfolioItem[] = [
     category: "Design",
     title: "Neurology Publication Design",
     description:
-      "Scientific book design and 3D visual presentation for 'Electrical Activity of the Human Brain' by Dr. Suneth Pathirana, featuring custom medical brain visualization and academic typography.",
+      "Scientific publication cover design and 3D visual presentation for 'Electrical Activity of the Human Brain', featuring custom medical brain visualization and academic typography.",
     tags: ["Scientific Book", "Cover Art", "Editorial"],
     icon: Layers,
     gradient: "linear-gradient(135deg, #00C6FF 0%, #031422 100%)",

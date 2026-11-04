@@ -21,7 +21,6 @@ export const siteConfig = {
     { name: "CarVibes.lk", category: "Automotive Detailing", url: "https://carvibes.lk" },
     { name: "Ravi Tours & Travels", category: "Tourism & Expeditions", url: "https://ravitoursandtravels.com" },
     { name: "FreshLync", category: "Cold-Chain Supply Chain", url: "https://freshlync.live" },
-    { name: "Dr. Suneth Pathirana", category: "Medical AI Publications", url: "https://www.facebook.com/people/Infavour/61575722499481/" },
     { name: "Shabba & Kasu in UK", category: "YouTube Creators", url: "https://www.youtube.com/@Methuka.Shabeen" },
   ],
 };
