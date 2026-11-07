@@ -6,6 +6,7 @@ import ClientLogos from "@/components/ClientLogos";
 import InfinityFlow from "@/components/InfinityFlow";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Portfolio from "@/components/Portfolio";
+import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
@@ -53,6 +54,14 @@ export default function Home() {
       {/* ── Portfolio ── */}
       <div style={{ background: "#04020F", position: "relative", zIndex: 1 }}>
         <Portfolio />
+      </div>
+
+      {/* ── Section Divider ── */}
+      <div className="section-divider" />
+
+      {/* ── Pricing & Packages ── */}
+      <div style={{ background: "#060214", position: "relative", zIndex: 1 }}>
+        <Pricing />
       </div>
 
       {/* ── Section Divider ── */}
