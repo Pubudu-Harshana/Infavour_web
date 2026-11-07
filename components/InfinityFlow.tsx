@@ -111,7 +111,7 @@ export default function InfinityFlow() {
         </motion.div>
 
         {/* Service cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
+        <div className="responsive-services-grid">
           {services.map((service) => (
             <ServiceCard key={service.title} service={service} />
           ))}
@@ -130,7 +130,21 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
       style={{ position: "relative" }}
     >
       <div
-        style={{ position: "relative", borderRadius: "24px", padding: "40px 36px", display: "flex", flexDirection: "column", gap: "0", background: "rgba(255,255,255,0.03)", border: `1px solid ${service.color}28`, backdropFilter: "blur(24px)", transition: "all 0.4s ease", cursor: "default", height: "100%", overflow: "hidden" }}
+        style={{
+          position: "relative",
+          borderRadius: "24px",
+          padding: "clamp(26px, 4vw, 38px) clamp(20px, 4vw, 32px)",
+          display: "flex",
+          flexDirection: "column",
+          gap: "0",
+          background: "rgba(255,255,255,0.03)",
+          border: `1px solid ${service.color}28`,
+          backdropFilter: "blur(24px)",
+          transition: "all 0.4s ease",
+          cursor: "default",
+          height: "100%",
+          overflow: "hidden",
+        }}
         onMouseEnter={(e) => {
           const el = e.currentTarget as HTMLElement;
           el.style.borderColor = service.color + "55";

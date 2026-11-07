@@ -453,13 +453,7 @@ export default function Portfolio() {
         </div>
 
         {/* Portfolio grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))",
-            gap: "26px",
-          }}
-        >
+        <div className="responsive-portfolio-grid">
           {filtered.map((item, i) => {
             const Icon = item.icon;
             return (
@@ -474,7 +468,7 @@ export default function Portfolio() {
                   position: "relative",
                   overflow: "hidden",
                   borderRadius: "24px",
-                  height: "390px",
+                  height: "clamp(350px, 45vw, 390px)",
                   cursor: "pointer",
                   background: "#080414",
                   border: "1px solid rgba(255,255,255,0.1)",
@@ -694,14 +688,14 @@ export default function Portfolio() {
                       WebkitBackdropFilter: "blur(20px)",
                       border: "1px solid rgba(255, 255, 255, 0.12)",
                       borderRadius: "18px",
-                      padding: "18px 20px",
+                      padding: "clamp(14px, 2.5vw, 18px) clamp(14px, 2.5vw, 20px)",
                       boxShadow: "0 10px 30px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)",
                     }}
                   >
                     {/* Title */}
                     <h3
                       style={{
-                        fontSize: "20px",
+                        fontSize: "clamp(17px, 3.5vw, 20px)",
                         fontWeight: 800,
                         color: "#ffffff",
                         fontFamily: "Outfit, sans-serif",

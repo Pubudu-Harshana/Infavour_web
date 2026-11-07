@@ -97,10 +97,110 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  #why-us > div > div:last-child > div:last-child {
-    grid-template-columns: 1fr !important;
+/* ── Universal Responsive Grid Classes ── */
+.responsive-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 960px) {
+  .responsive-services-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
+@media (max-width: 640px) {
+  .responsive-services-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+.responsive-why-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 64px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(24px);
+}
+@media (max-width: 900px) {
+  .responsive-why-stats {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 40px;
+  }
+}
+@media (max-width: 520px) {
+  .responsive-why-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .responsive-why-stats > div {
+    padding: 20px 12px !important;
+  }
+  .responsive-why-stats > div p:first-of-type {
+    font-size: 32px !important;
+  }
+}
+
+.responsive-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 960px) {
+  .responsive-why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .responsive-why-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.responsive-portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+@media (max-width: 768px) {
+  .responsive-portfolio-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+  }
+}
+@media (max-width: 480px) {
+  .responsive-portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.responsive-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+  margin-bottom: 56px;
+}
+@media (max-width: 1080px) {
+  .responsive-pricing-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .responsive-pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+}
+
+@media (max-width: 768px) {
   #contact > div > div:nth-child(3) {
     grid-template-columns: 1fr !important;
   }

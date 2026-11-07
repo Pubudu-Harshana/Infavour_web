@@ -113,7 +113,7 @@ export default function WhyChooseUs() {
           initial={{ opacity: 0, y: 30 }}
           animate={statsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0", borderRadius: "20px", overflow: "hidden", marginBottom: "64px", border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)", backdropFilter: "blur(24px)" }}
+          className="responsive-why-stats"
         >
           {bigStats.map((stat, i) => (
             <motion.div
@@ -135,7 +135,7 @@ export default function WhyChooseUs() {
         </motion.div>
 
         {/* Cards grid 3x2 */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+        <div className="responsive-why-grid">
           {reasons.map((reason, i) => (
             <TiltCard key={reason.title} reason={reason} index={i} />
           ))}
@@ -183,7 +183,7 @@ function TiltCard({ reason, index }: { reason: typeof reasons[0]; index: number 
           (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 60px ${reason.glow}20, 0 0 0 1px ${reason.color}45`;
           (e.currentTarget as HTMLElement).style.borderColor = `${reason.color}50`;
         }}
-        style={{ position: "relative", padding: "32px", borderRadius: "20px", background: "linear-gradient(145deg, rgba(14, 7, 32, 0.88) 0%, rgba(6, 2, 18, 0.95) 100%)", border: `1px solid ${reason.color}35`, backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)", transformStyle: "preserve-3d", transition: "transform 0.15s ease, box-shadow 0.3s ease, border-color 0.3s ease", overflow: "hidden", cursor: "default", boxShadow: "0 10px 30px rgba(0,0,0,0.4)" }}
+        style={{ position: "relative", padding: "clamp(22px, 3.5vw, 32px)", borderRadius: "20px", background: "linear-gradient(145deg, rgba(14, 7, 32, 0.88) 0%, rgba(6, 2, 18, 0.95) 100%)", border: `1px solid ${reason.color}35`, backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)", transformStyle: "preserve-3d", transition: "transform 0.15s ease, box-shadow 0.3s ease, border-color 0.3s ease", overflow: "hidden", cursor: "default", boxShadow: "0 10px 30px rgba(0,0,0,0.4)" }}
       >
         {/* Corner accent */}
         <div style={{ position: "absolute", top: 0, right: 0, width: "120px", height: "120px", background: `radial-gradient(circle at top right, ${reason.glow}25 0%, transparent 70%)`, pointerEvents: "none" }} />

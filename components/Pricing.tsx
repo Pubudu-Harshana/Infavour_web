@@ -51,14 +51,14 @@ const pricingPlans: PricingPlan[] = [
     gradient: "linear-gradient(135deg, rgba(56,189,248,0.15) 0%, rgba(14,7,32,0.85) 100%)",
     clientExample: "Ideal for Tuition Tutes, Consultancies & Local Services",
     features: [
-      "1–3 Bespoke Responsive Sections (Single-Page Experience)",
-      "Ultra-Fast Next.js & Tailwind CSS Architecture",
-      "Direct WhatsApp & Click-to-Call Lead Capture",
-      "Contact Form with Instant Email Notifications",
-      "Google Maps Location & Social Media Integration",
-      "On-Page SEO Optimization & Mobile Speed Tuning",
-      "Free SSL Certificate & Custom Domain Configuration",
-      "30 Days Free Post-Launch Technical Support",
+      "1–3 Custom Modern Responsive Sections",
+      "Ultra-Fast Next.js & Tailwind Architecture",
+      "Direct WhatsApp & Call Lead Capture",
+      "Contact Form with Instant Email Alerts",
+      "Google Maps & Social Media Links",
+      "On-Page SEO & Mobile Speed Tuning",
+      "Free SSL & Custom Domain Setup",
+      "30 Days Free Technical Support",
     ],
     ctaLabel: "Get Started Now",
     whatsappMessage:
@@ -78,15 +78,14 @@ const pricingPlans: PricingPlan[] = [
     gradient: "linear-gradient(135deg, rgba(123,47,247,0.25) 0%, rgba(0,198,255,0.15) 50%, rgba(14,7,32,0.92) 100%)",
     clientExample: "Engineered like CarVibes.lk & Ravi Tours & Travels",
     features: [
-      "Up to 6–8 Custom Pages (Home, Services, About, Tours, Booking, Contact)",
+      "Up to 6–8 Custom Pages (Home, Services, Tours, Contact)",
       "Interactive Service Booking & Tour Inquiry Engine",
-      "Custom Framer Motion Micro-Interactions & Glassmorphic UI",
-      "Technical SEO Architecture + High-Res OpenGraph Social Share Cards",
-      "Floating Multi-Channel WhatsApp Support Widget",
-      "Google Analytics 4 & Meta Pixel Event Tracking Setup",
-      "Performance Optimization (Google Lighthouse 90+ Score Guaranteed)",
-      "Content Management Guidance & Video Training Handover",
-      "60 Days Dedicated Priority Maintenance & Support",
+      "Custom Framer Motion UI & Glassmorphic Design",
+      "Technical SEO & High-Res Social Share Cards",
+      "Multi-Channel Floating WhatsApp Widget",
+      "Google Analytics 4 & Meta Pixel Setup",
+      "Lighthouse 90+ Speed Score Guaranteed",
+      "60 Days Priority Maintenance & Video Handover",
     ],
     ctaLabel: "Launch Your Website",
     whatsappMessage:
@@ -106,15 +105,14 @@ const pricingPlans: PricingPlan[] = [
     gradient: "linear-gradient(135deg, rgba(16,185,129,0.18) 0%, rgba(14,7,32,0.85) 100%)",
     clientExample: "Engineered like FreshLync & Custom Digital Portals",
     features: [
-      "Full Custom Web Application & Scalable Architecture",
-      "Payment Gateway Integration (PayHere, Stripe, Visa / MasterCard)",
-      "Dynamic Product / Service Catalog & Shopping Cart Flow",
-      "User Authentication, Customer Accounts & Role Dashboards",
-      "Real-Time Data APIs, Webhooks & Live Tracking (like FreshLync)",
-      "Automated Order Confirmations via WhatsApp & Email",
-      "Enterprise Database Security & Automated Daily Cloud Backups",
-      "Full Source Code Ownership & Deployment to Vercel/AWS",
-      "90 Days VIP Dedicated SLA Maintenance & Priority Updates",
+      "Full Custom Web Application Architecture",
+      "Payment Gateway (PayHere, Stripe, Cards)",
+      "Dynamic Product Catalog & Shopping Cart Flow",
+      "Customer Accounts & Secure Role Dashboards",
+      "Real-Time Data APIs & Live Tracking",
+      "Automated Order Alerts via WhatsApp & Email",
+      "Enterprise Database Security & Daily Backups",
+      "90 Days VIP Dedicated SLA Maintenance",
     ],
     ctaLabel: "Build Scalable App",
     whatsappMessage:
@@ -310,15 +308,7 @@ export default function Pricing() {
         </motion.div>
 
         {/* Pricing Cards Grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "28px",
-            alignItems: "stretch",
-            marginBottom: "56px",
-          }}
-        >
+        <div className="responsive-pricing-grid">
           {pricingPlans.map((plan, index) => {
             const Icon = plan.icon;
             const price = currency === "LKR" ? plan.priceLKR : plan.priceUSD;
@@ -336,7 +326,7 @@ export default function Pricing() {
                   border: plan.featured
                     ? "2px solid rgba(123, 47, 247, 0.75)"
                     : "1px solid rgba(255, 255, 255, 0.1)",
-                  padding: "36px 30px",
+                  padding: "clamp(26px, 4vw, 36px) clamp(20px, 3.5vw, 30px)",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
@@ -522,7 +512,7 @@ export default function Pricing() {
                   </div>
 
                   {/* Feature Checklist */}
-                  <div style={{ marginBottom: "32px" }}>
+                  <div style={{ marginBottom: "24px" }}>
                     <p
                       style={{
                         fontSize: "11px",
@@ -531,29 +521,29 @@ export default function Pricing() {
                         textTransform: "uppercase",
                         color: "rgba(255,255,255,0.45)",
                         fontFamily: "Outfit, sans-serif",
-                        marginBottom: "14px",
+                        marginBottom: "12px",
                       }}
                     >
                       What&apos;s Included:
                     </p>
 
-                    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "9px" }}>
                       {plan.features.map((feature, i) => (
                         <div
                           key={i}
                           style={{
                             display: "flex",
                             alignItems: "flex-start",
-                            gap: "10px",
-                            fontSize: "13.5px",
+                            gap: "9px",
+                            fontSize: "13px",
                             color: "rgba(255,255,255,0.85)",
-                            lineHeight: 1.5,
+                            lineHeight: 1.45,
                           }}
                         >
                           <div
                             style={{
-                              width: "18px",
-                              height: "18px",
+                              width: "17px",
+                              height: "17px",
                               borderRadius: "50%",
                               background: `${plan.accentColor}25`,
                               border: `1px solid ${plan.accentColor}`,
@@ -564,7 +554,7 @@ export default function Pricing() {
                               marginTop: "2px",
                             }}
                           >
-                            <Check size={11} color={plan.accentColor} strokeWidth={3} />
+                            <Check size={10} color={plan.accentColor} strokeWidth={3} />
                           </div>
                           <span>{feature}</span>
                         </div>
