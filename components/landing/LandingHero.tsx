@@ -14,18 +14,28 @@ function WebIcon() {
     </svg>
   );
 }
-function MarketingIcon() {
+function DesignIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-      <polyline points="16 7 22 7 22 13" />
+      <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+      <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+      <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+      <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
     </svg>
   );
 }
-function CloudIcon() {
+function VideoIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+      <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18" />
+      <line x1="7" y1="2" x2="7" y2="22" />
+      <line x1="17" y1="2" x2="17" y2="22" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <line x1="2" y1="7" x2="7" y2="7" />
+      <line x1="2" y1="17" x2="7" y2="17" />
+      <line x1="17" y1="17" x2="22" y2="17" />
+      <line x1="17" y1="7" x2="22" y2="7" />
     </svg>
   );
 }
@@ -869,19 +879,19 @@ export default function LandingHero() {
         <FeatureCard
           icon={<WebIcon />}
           title="Web Development"
-          desc="Modern, responsive & high-performance websites."
+          desc="Modern, responsive & high-performance digital platforms."
           delay={0.8}
         />
         <FeatureCard
-          icon={<MarketingIcon />}
-          title="Digital Marketing"
-          desc="Boost your brand with smart digital strategies."
+          icon={<DesignIcon />}
+          title="Graphic Design & Branding"
+          desc="Luxury brand identities, publications & stationery."
           delay={0.92}
         />
         <FeatureCard
-          icon={<CloudIcon />}
-          title="Cloud Services"
-          desc="Scalable cloud solutions for your business."
+          icon={<VideoIcon />}
+          title="Cinematic Video Production"
+          desc="Viral YouTube vlogs, 4K commercials & retention edits."
           delay={1.04}
         />
       </div>

@@ -10,11 +10,12 @@ const navLinks = [
   { href: "#why-us",    label: "Solutions", sectionId: "why-us" },
   { href: "#portfolio", label: "Projects",  sectionId: "portfolio" },
   { href: "#pricing",   label: "Pricing",   sectionId: "pricing" },
+  { href: "#faq",       label: "FAQ",       sectionId: "faq" },
   { href: "#contact",   label: "Contact",   sectionId: "contact" },
 ];
 
 // Section IDs we actually observe (unique)
-const sectionIds = ["home", "services", "why-us", "portfolio", "pricing", "contact"];
+const sectionIds = ["home", "services", "why-us", "portfolio", "pricing", "faq", "contact"];
 
 export default function LandingNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);

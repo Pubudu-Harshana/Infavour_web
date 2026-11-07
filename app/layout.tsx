@@ -81,12 +81,20 @@ const jsonLd = {
     addressCountry: "LK",
   },
   sameAs: [
+    "https://maps.google.com/maps?cid=0x44f677941e304a87:0x6bc026fc92c996af",
     siteConfig.socials.facebook,
     siteConfig.socials.instagram,
     siteConfig.socials.linkedin,
     siteConfig.socials.tiktok,
   ],
   priceRange: "$$",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    reviewCount: "10",
+    bestRating: "5",
+    worstRating: "1",
+  },
 };
 
 export default function RootLayout({

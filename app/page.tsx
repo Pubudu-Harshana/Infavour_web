@@ -7,6 +7,7 @@ import InfinityFlow from "@/components/InfinityFlow";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Portfolio from "@/components/Portfolio";
 import Pricing from "@/components/Pricing";
+import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
@@ -62,6 +63,14 @@ export default function Home() {
       {/* ── Pricing & Packages ── */}
       <div style={{ background: "#060214", position: "relative", zIndex: 1 }}>
         <Pricing />
+      </div>
+
+      {/* ── Section Divider ── */}
+      <div className="section-divider" />
+
+      {/* ── FAQ ── */}
+      <div style={{ background: "#060214", position: "relative", zIndex: 1 }}>
+        <FAQ />
       </div>
 
       {/* ── Section Divider ── */}
