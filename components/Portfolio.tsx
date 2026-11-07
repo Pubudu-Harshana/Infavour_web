@@ -68,17 +68,17 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: 4,
     category: "Design",
-    title: "Medical AI Book & Editorial",
+    title: "Combined Mathematics Book Cover",
     description:
-      "Official book cover design, typography, and 3D publication presentation for 'Artificial Intelligence for Medical Education and Research' academic publication.",
-    tags: ["Book Cover", "Publication", "Editorial Design"],
+      "Premium educational publication cover and 3D promotional presentation for 'Basic Concepts of Combined Mathematics' by Eng. Hashen De Silva. Features bespoke conceptual robotics artwork, architectural blueprint backdrop, and precision print typography.",
+    tags: ["Book Cover", "Educational Tute", "Print Design", "3D Mockup"],
     icon: Layers,
     gradient: "linear-gradient(135deg, #F59E0B 0%, #1e1203 100%)",
     accentColor: "#F59E0B",
-    stat: "Published Book",
+    stat: "Featured Publication",
     featured: true,
-    image: "/Images/portfolio/medical_ai_book.jpg",
-    url: "https://www.facebook.com/people/Infavour/61575722499481/",
+    image: "/Images/portfolio/tuition_book_cover.jpg",
+    url: "https://www.facebook.com/share/p/19rGVhbocu/",
   },
   {
     id: 5,
@@ -98,17 +98,17 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: 6,
     category: "Design",
-    title: "Neurology Publication Design",
+    title: "Hardcover 3D Edition Mockup",
     description:
-      "Scientific publication cover design and 3D visual presentation for 'Electrical Activity of the Human Brain', featuring custom medical brain visualization and academic typography.",
-    tags: ["Scientific Book", "Cover Art", "Editorial"],
+      "Photorealistic 3D hardcover edition presentation for Combined Mathematics Advanced Level series, showcasing spine typography, industrial workshop desktop staging, and tactile materials.",
+    tags: ["3D Mockup", "Hardcover Staging", "Editorial", "Spine Design"],
     icon: Layers,
-    gradient: "linear-gradient(135deg, #00C6FF 0%, #031422 100%)",
-    accentColor: "#00C6FF",
-    stat: "Academic Release",
+    gradient: "linear-gradient(135deg, #EAB308 0%, #1a1400 100%)",
+    accentColor: "#EAB308",
+    stat: "3D Presentation",
     featured: false,
-    image: "/Images/portfolio/human_brain_book.jpg",
-    url: "https://www.facebook.com/people/Infavour/61575722499481/",
+    image: "/Images/portfolio/tuition_tute_cover_3.jpg",
+    url: "https://www.facebook.com/share/p/19rGVhbocu/",
   },
   {
     id: 7,
@@ -1059,6 +1059,10 @@ export default function Portfolio() {
                       {modal.category === "Video" ? (
                         <>
                           <Play size={14} fill="#ffffff" /> Watch on YouTube
+                        </>
+                      ) : modal.url.includes("facebook.com") ? (
+                        <>
+                          View on Facebook <ExternalLink size={14} />
                         </>
                       ) : (
                         <>
